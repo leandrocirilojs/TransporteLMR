@@ -4,8 +4,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalAmount = document.getElementById('total-amount');
     const totalProfit = document.getElementById('total-profit');
     const filterDate = document.getElementById('filter-date');
+    const allExpensesList = document.getElementById('all-expenses-list'); // Nova lista para todas as saídas
 
-    // Carregar saídas do Local Storage
+    // Função para carregar todas as saídas e exibi-las
+    const loadAllExpenses = () => {
+        const expenses = JSON.parse(localStorage.getItem('expenses')) || [];
+        allExpensesList.innerHTML = ''; // Limpar a lista antes de popular
+        expenses.forEach((expense) => {
+            const li = document.createElement('li');
+            li.innerHTML = `${expense.driver} - ${expense.store} - R$${expense.amount} - Recebido: R$${expense.received} - Lucro: R$${expense.profit} - ${expense.date}`;
+            allExpensesList.appendChild(li);
+        });
+    };
+
+    // Função para carregar e filtrar saídas
     const loadExpenses = (filter = null) => {
         const expenses = JSON.parse(localStorage.getItem('expenses')) || [];
         expenseList.innerHTML = '';
@@ -22,6 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         totalAmount.textContent = total.toFixed(2);
         totalProfit.textContent = totalProf.toFixed(2);
+
+        // Também atualizar a lista de todas as saídas cadastradas
+        loadAllExpenses();
     };
 
     // Adicionar nova saída
@@ -56,5 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
         loadExpenses(e.target.value);
     });
 
+    // Carregar todas as saídas no início
     loadExpenses();
 });
