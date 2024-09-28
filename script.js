@@ -99,12 +99,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Adiciona cada saída filtrada
         let y = 40;
+        let totalValue = 0; // Para somar os valores das saídas
+
         filteredExpenses.forEach((expense, index) => {
             const expenseText = `${expense.driver} - ${expense.store} - R$${expense.amount} - R$${expense.received} - R$${expense.profit} - ${expense.date}`;
             doc.text(expenseText, 14, y);
             y += 10;  // Move para a próxima linha
+            totalValue += parseFloat(expense.amount); // Acumula o valor total
         });
 
+        // Adiciona o total ao PDF
+        doc.setFontSize(14);
+        doc.text(`Total das Saídas: R$${totalValue.toFixed(2)}`, 14, y);
+        
         // Salva o PDF
         doc.save('Relatorio_de_Saidas.pdf');
     });
