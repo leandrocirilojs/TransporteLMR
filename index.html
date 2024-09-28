@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Controle de Saídas da Transportadora</title>
@@ -57,6 +58,11 @@
             <h2>Lucro Total: R$<span id="total-profit">0.00</span></h2>
         </div>
     </div>
+
+<!-- Botão para baixar o PDF -->
+<button id="download-pdf" style="margin-top: 20px;">Baixar PDF das Saídas</button>
+
+    
     <script src="script.js"></script>
 </body>
 </html>
