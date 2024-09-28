@@ -75,6 +75,14 @@
 <!-- Botão para baixar o PDF -->
 <button id="download-pdf" style="margin-top: 20px;">Baixar Relatório</button>
 
+    <script>
+    const menuToggle = document.getElementById('mobile-menu');
+    const navLinks = document.getElementById('nav-links');
+
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+    </script>
     
     <script src="script.js"></script>
 </body>
