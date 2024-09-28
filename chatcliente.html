@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Saídas da Transportadora</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body style="background-color: black;">
+    
+<header class="header">
+    <div class="logo">
+        <h1>LMR Entregas</h1>
+    </div>
+    <div class="menu-toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </div>
+    <nav class="nav" id="nav-links">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Pedidos</a></li>
+            <li><a href="#">Entregadores</a></li>
+            <li><a href="#">Contato</a></li>
+        </ul>
+    </nav>
+</header>
+
+
+    
+    <div class="container">
+      <div class="chat-container">
+        <div class="chat-header">
+            <img src="https://img.freepik.com/free-vector/graident-ai-robot-vectorart_78370-4114.jpg?w=1060&t=st=1727220581~exp=1727221181~hmac=94d07ebe4dff7c42346754ecd470e48c81a5415bf35fe24e2d58437f9621757f" alt="User" class="user-img">
+            <h1>Envie uma mensagem para o WhatsApp</h1>
+        </div>
+        <input type="text" id="phoneNumber" placeholder="Número de WhatsApp">
+        <textarea id="message" placeholder="Digite sua mensagem"></textarea>
+        <div class="autocomplete-options">
+            <button onclick="autoFillMessage('Olá sou entregador do Krill')">Opção 1: Olá sou entregador do Krill</button>
+            <button onclick="autoFillMessage('Olá sou entregador do Tenda')">Opção 2: Olá sou entregador do Tenda</button>
+        </div>
+        <button onclick="sendMessage()">Enviar</button>
+        <div class="info">
+            <p id="batteryLevel">Nível da bateria: Carregando...</p>
+            <p id="systemPhoneNumber">Número de telefone do sistema: Carregando...</p>
+            <p id="dateTime">Data e Hora: Carregando...</p>
+        </div>
+    </div>
+      
+    </div>
+    <script>
+    const menuToggle = document.getElementById('mobile-menu');
+    const navLinks = document.getElementById('nav-links');
+
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+    </script>
+    
+    <script src="script.js"></script>
+</body>
+</html>
