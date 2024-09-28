@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const filterStartDate = document.getElementById('filter-start-date');
     const filterEndDate = document.getElementById('filter-end-date');
     const filterDriver = document.getElementById('filter-driver');
+    const downloadPdfButton = document.getElementById('download-pdf');
+
+    let filteredExpenses = [];  // Armazena as saídas filtradas para o PDF
 
     // Função para carregar e filtrar saídas
     const loadExpenses = (filterStartDateValue = null, filterEndDateValue = null, filterDriverValue = null) => {
@@ -13,6 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
         expenseList.innerHTML = '';  // Limpa a lista de saídas
         let total = 0;
         let totalProf = 0;
+
+        filteredExpenses = [];  // Reinicia a lista filtrada
 
         // Itera sobre cada saída no LocalStorage
         expenses.forEach((expense, index) => {
@@ -29,6 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 expenseList.appendChild(li);
                 total += parseFloat(expense.amount);
                 totalProf += parseFloat(expense.profit);
+
+                filteredExpenses.push(expense);  // Armazena a saída filtrada
             }
         });
 
@@ -76,6 +83,31 @@ document.addEventListener('DOMContentLoaded', () => {
     filterStartDate.addEventListener('change', applyFilters);
     filterEndDate.addEventListener('change', applyFilters);
     filterDriver.addEventListener('change', applyFilters);
+
+    // Função para gerar o PDF
+    downloadPdfButton.addEventListener('click', () => {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        // Cabeçalho do PDF
+        doc.setFontSize(18);
+        doc.text('Relatório de Saídas Filtradas', 14, 20);
+
+        // Adiciona uma linha em branco
+        doc.setFontSize(12);
+        doc.text('Motorista - Loja - Valor Saída - Recebido - Lucro - Data', 14, 30);
+
+        // Adiciona cada saída filtrada
+        let y = 40;
+        filteredExpenses.forEach((expense, index) => {
+            const expenseText = `${expense.driver} - ${expense.store} - R$${expense.amount} - R$${expense.received} - R$${expense.profit} - ${expense.date}`;
+            doc.text(expenseText, 14, y);
+            y += 10;  // Move para a próxima linha
+        });
+
+        // Salva o PDF
+        doc.save('Relatorio_de_Saidas.pdf');
+    });
 
     // Carregar todas as saídas ao iniciar
     loadExpenses();
