@@ -3,20 +3,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const expenseList = document.getElementById('expenses');
     const totalAmount = document.getElementById('total-amount');
     const totalProfit = document.getElementById('total-profit');
-    const filterDate = document.getElementById('filter-date');
+    const filterStartDate = document.getElementById('filter-start-date');
+    const filterEndDate = document.getElementById('filter-end-date');
     const filterDriver = document.getElementById('filter-driver');
 
     // Função para carregar e filtrar saídas
-    const loadExpenses = (filterDateValue = null, filterDriverValue = null) => {
+    const loadExpenses = (filterStartDateValue = null, filterEndDateValue = null, filterDriverValue = null) => {
         const expenses = JSON.parse(localStorage.getItem('expenses')) || [];
         expenseList.innerHTML = '';
         let total = 0;
         let totalProf = 0;
+
         expenses.forEach((expense, index) => {
-            const dateMatch = !filterDateValue || expense.date === filterDateValue;
+            const dateExpense = new Date(expense.date);
+            const startDateMatch = !filterStartDateValue || dateExpense >= new Date(filterStartDateValue);
+            const endDateMatch = !filterEndDateValue || dateExpense <= new Date(filterEndDateValue);
             const driverMatch = !filterDriverValue || expense.driver === filterDriverValue;
 
-            if (dateMatch && driverMatch) {
+            if (startDateMatch && endDateMatch && driverMatch) {
                 const li = document.createElement('li');
                 li.innerHTML = `${expense.driver} - ${expense.store} - R$${expense.amount} - Recebido: R$${expense.received} - Lucro: R$${expense.profit} - ${expense.date} <button onclick="removeExpense(${index})">Remover</button>`;
                 expenseList.appendChild(li);
@@ -55,14 +59,14 @@ document.addEventListener('DOMContentLoaded', () => {
         loadExpenses();
     };
 
-    // Filtrar saídas por data e motorista
-    filterDate.addEventListener('change', (e) => {
-        loadExpenses(e.target.value, filterDriver.value);
-    });
+    // Filtros para data e motorista
+    const applyFilters = () => {
+        loadExpenses(filterStartDate.value, filterEndDate.value, filterDriver.value);
+    };
 
-    filterDriver.addEventListener('change', (e) => {
-        loadExpenses(filterDate.value, e.target.value);
-    });
+    filterStartDate.addEventListener('change', applyFilters);
+    filterEndDate.addEventListener('change', applyFilters);
+    filterDriver.addEventListener('change', applyFilters);
 
     // Carregar todas as saídas no início
     loadExpenses();
