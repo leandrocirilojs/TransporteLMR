@@ -10,16 +10,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // Função para carregar e filtrar saídas
     const loadExpenses = (filterStartDateValue = null, filterEndDateValue = null, filterDriverValue = null) => {
         const expenses = JSON.parse(localStorage.getItem('expenses')) || [];
-        expenseList.innerHTML = '';
+        expenseList.innerHTML = '';  // Limpa a lista de saídas
         let total = 0;
         let totalProf = 0;
 
+        // Itera sobre cada saída no LocalStorage
         expenses.forEach((expense, index) => {
-            const dateExpense = new Date(expense.date);
+            const dateExpense = new Date(expense.date);  // Converte a data da saída para o formato Date
+
             const startDateMatch = !filterStartDateValue || dateExpense >= new Date(filterStartDateValue);
             const endDateMatch = !filterEndDateValue || dateExpense <= new Date(filterEndDateValue);
             const driverMatch = !filterDriverValue || expense.driver === filterDriverValue;
 
+            // Verifica se a saída corresponde aos filtros
             if (startDateMatch && endDateMatch && driverMatch) {
                 const li = document.createElement('li');
                 li.innerHTML = `${expense.driver} - ${expense.store} - R$${expense.amount} - Recebido: R$${expense.received} - Lucro: R$${expense.profit} - ${expense.date} <button onclick="removeExpense(${index})">Remover</button>`;
@@ -28,6 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 totalProf += parseFloat(expense.profit);
             }
         });
+
+        // Atualiza os totais
         totalAmount.textContent = total.toFixed(2);
         totalProfit.textContent = totalProf.toFixed(2);
     };
@@ -47,27 +52,31 @@ document.addEventListener('DOMContentLoaded', () => {
         expenses.push(expense);
         localStorage.setItem('expenses', JSON.stringify(expenses));
 
-        loadExpenses();
+        loadExpenses();  // Carrega a lista após adicionar uma nova saída
         expenseForm.reset();
     });
 
     // Remover saída
     window.removeExpense = (index) => {
         const expenses = JSON.parse(localStorage.getItem('expenses')) || [];
-        expenses.splice(index, 1);
-        localStorage.setItem('expenses', JSON.stringify(expenses));
-        loadExpenses();
+        expenses.splice(index, 1);  // Remove a saída da lista
+        localStorage.setItem('expenses', JSON.stringify(expenses));  // Atualiza o LocalStorage
+        loadExpenses();  // Recarrega a lista após a remoção
     };
 
-    // Filtros para data e motorista
+    // Função para aplicar os filtros de data e motorista
     const applyFilters = () => {
-        loadExpenses(filterStartDate.value, filterEndDate.value, filterDriver.value);
+        const startDate = filterStartDate.value;
+        const endDate = filterEndDate.value;
+        const driver = filterDriver.value;
+        loadExpenses(startDate, endDate, driver);  // Aplica os filtros
     };
 
+    // Eventos dos filtros de data e motorista
     filterStartDate.addEventListener('change', applyFilters);
     filterEndDate.addEventListener('change', applyFilters);
     filterDriver.addEventListener('change', applyFilters);
 
-    // Carregar todas as saídas no início
+    // Carregar todas as saídas ao iniciar
     loadExpenses();
 });
