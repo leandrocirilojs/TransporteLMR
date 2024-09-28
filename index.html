@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Saídas da Transportadora</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Controle de Saídas da Transportadora</h1>
+        <form id="expense-form">
+            <select id="driver-name" required>
+                <option value="" disabled selected>Selecione o Motorista</option>
+                <option value="Weverton">Weverton</option>
+                <option value="Alexandre">Alexandre</option>
+                <option value="Leandro">Leandro</option>
+                <option value="Eder">Eder</option>
+                <option value="Marcos">Marcos</option>
+                <option value="Motorista1">Motorista1</option>
+                <option value="Motorista2">Motorista2</option>
+            </select>
+            <select id="store-name" required>
+                <option value="" disabled selected>Selecione a Loja</option>
+                <option value="Tenda Itanhaém">Tenda Itanhaém</option>
+                <option value="Tenda Praia Grande">Tenda Praia Grande</option>
+                <option value="Krill Cubatão">Krill Cubatão</option>
+                <option value="Krill Mongaguá">Krill Mongaguá</option>
+                <option value="Krill Praia Grande">Krill Praia Grande</option>
+                <option value="Carrefour São Vicente">Carrefour São Vicente</option>
+            </select>
+            <input type="number" id="expense-amount" placeholder="Valor da Saída" required>
+            <input type="number" id="received-amount" placeholder="Valor Recebido" required>
+            <input type="date" id="expense-date" required>
+            <button type="submit">Adicionar Saída</button>
+        </form>
+        <div class="expense-list">
+            <h2>Saídas</h2>
+            <div class="filters">
+                <input type="date" id="filter-date">
+                <select id="filter-driver">
+                    <option value="" disabled selected>Filtrar por Motorista</option>
+                    <option value="Weverton">Weverton</option>
+                    <option value="Alexandre">Alexandre</option>
+                    <option value="Leandro">Leandro</option>
+                    <option value="Eder">Eder</option>
+                    <option value="Marcos">Marcos</option>
+                    <option value="Motorista1">Motorista1</option>
+                    <option value="Motorista2">Motorista2</option>
+                </select>
+            </div>
+            <ul id="expenses"></ul>
+        </div>
+        <div class="total">
+            <h2>Total: R$<span id="total-amount">0.00</span></h2>
+            <h2>Lucro Total: R$<span id="total-profit">0.00</span></h2>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
