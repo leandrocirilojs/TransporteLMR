@@ -1,48 +1,70 @@
+/* Estilos Gerais */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+    color: #333;
 }
 
+/* Container Principal */
 .container {
     max-width: 600px;
     margin: 50px auto;
     padding: 20px;
     background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    border: 2px solid #000; /* Borda preta para contraste */
 }
 
+/* Cabeçalhos */
 h1, h2 {
     text-align: center;
+    color: #333;
 }
 
+/* Formulário de Saídas */
 form {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
+/* Campos de Input e Select */
 input, select, button {
-    padding: 10px;
+    padding: 12px;
     font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s, background-color 0.3s;
 }
 
+input:focus, select:focus {
+    border-color: #28a745; /* Cor verde ao focar no campo */
+    outline: none;
+}
+
+/* Botão Adicionar Saída */
 button {
     background-color: #28a745;
     color: #fff;
     border: none;
     cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: bold;
 }
 
 button:hover {
     background-color: #218838;
 }
 
+/* Lista de Saídas */
 .expense-list {
     margin-top: 20px;
 }
 
+/* Estilização dos Itens da Lista */
 .expense-list ul {
     list-style-type: none;
     padding: 0;
@@ -51,26 +73,90 @@ button:hover {
 .expense-list li {
     background-color: #f8f9fa;
     margin: 5px 0;
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #ddd;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-radius: 5px;
+    transition: background-color 0.3s;
 }
 
+.expense-list li:hover {
+    background-color: #e2e6ea; /* Efeito hover para interatividade */
+}
+
+/* Botão Remover Saída */
 .expense-list button {
     background-color: #dc3545;
     color: #fff;
     border: none;
     cursor: pointer;
     padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
 }
 
 .expense-list button:hover {
     background-color: #c82333;
 }
 
+/* Totais */
 .total {
     margin-top: 20px;
     text-align: center;
+}
+
+.total h2 {
+    color: #007bff; /* Azul para os totais */
+}
+
+/* Filtros */
+.filters {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.filters input, .filters select {
+    flex: 1;
+    border: 1px solid #ccc;
+}
+
+/* Hover e Foco dos Filtros */
+.filters input:hover, .filters select:hover {
+    background-color: #e2f7e1; /* Verde suave ao passar o mouse */
+}
+
+.filters input:focus, .filters select:focus {
+    border-color: #007bff; /* Foco azul para filtros */
+    background-color: #e9f7ff;
+}
+
+/* Estilo do Título */
+h1 {
+    color: #28a745; /* Verde para o título principal */
+    font-size: 24px;
+}
+
+h2 {
+    color: #333; /* Preto para subtítulos */
+    font-size: 20px;
+}
+
+/* Estilos Responsivos */
+@media (max-width: 600px) {
+    .container {
+        margin: 20px;
+        padding: 15px;
+    }
+
+    form, .filters {
+        flex-direction: column;
+    }
+
+    .filters input, .filters select {
+        margin-bottom: 10px;
+    }
 }
