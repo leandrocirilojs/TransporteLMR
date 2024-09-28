@@ -4,15 +4,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalAmount = document.getElementById('total-amount');
     const totalProfit = document.getElementById('total-profit');
     const filterDate = document.getElementById('filter-date');
+    const filterDriver = document.getElementById('filter-driver');
 
     // Função para carregar e filtrar saídas
-    const loadExpenses = (filter = null) => {
+    const loadExpenses = (filterDateValue = null, filterDriverValue = null) => {
         const expenses = JSON.parse(localStorage.getItem('expenses')) || [];
         expenseList.innerHTML = '';
         let total = 0;
         let totalProf = 0;
         expenses.forEach((expense, index) => {
-            if (!filter || expense.date === filter) {
+            const dateMatch = !filterDateValue || expense.date === filterDateValue;
+            const driverMatch = !filterDriverValue || expense.driver === filterDriverValue;
+
+            if (dateMatch && driverMatch) {
                 const li = document.createElement('li');
                 li.innerHTML = `${expense.driver} - ${expense.store} - R$${expense.amount} - Recebido: R$${expense.received} - Lucro: R$${expense.profit} - ${expense.date} <button onclick="removeExpense(${index})">Remover</button>`;
                 expenseList.appendChild(li);
@@ -51,9 +55,13 @@ document.addEventListener('DOMContentLoaded', () => {
         loadExpenses();
     };
 
-    // Filtrar saídas por data
+    // Filtrar saídas por data e motorista
     filterDate.addEventListener('change', (e) => {
-        loadExpenses(e.target.value);
+        loadExpenses(e.target.value, filterDriver.value);
+    });
+
+    filterDriver.addEventListener('change', (e) => {
+        loadExpenses(filterDate.value, e.target.value);
     });
 
     // Carregar todas as saídas no início
