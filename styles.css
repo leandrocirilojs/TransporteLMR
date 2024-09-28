@@ -57,6 +57,29 @@ button:hover {
     justify-content: space-between;
     align-items: center;
 }
+.all-expenses {
+    margin-top: 30px;
+}
+
+.all-expenses h2 {
+    text-align: center;
+}
+
+.all-expenses ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.all-expenses li {
+    background-color: #e9ecef;
+    margin: 5px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 
 .expense-list button {
     background-color: #dc3545;
