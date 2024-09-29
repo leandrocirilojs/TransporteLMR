@@ -6,9 +6,7 @@
     <title>Site do Cantor</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-  <style>
-body {
+<body> <style>body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -22,11 +20,26 @@ header {
     text-align: center;
 }
 
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 1rem;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
 main {
     padding: 2rem;
 }
 
-#musicas {
+section {
     margin-top: 2rem;
 }
 
@@ -38,13 +51,27 @@ audio {
     width: 100%;
     max-width: 300px;
 }
-
-    
-  </style>
+ </style>
     <header>
         <h1>Nome do Cantor</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#musicas">Músicas</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
     </header>
     <main>
+        <section id="home">
+            <h2>Bem-vindo ao site do Cantor</h2>
+            <p>Descrição breve sobre o cantor.</p>
+        </section>
+        <section id="sobre">
+            <h2>Sobre</h2>
+            <p>Informações sobre o cantor.</p>
+        </section>
         <section id="musicas">
             <h2>Músicas</h2>
             <div class="musica">
@@ -62,6 +89,10 @@ audio {
                 </audio>
             </div>
             <!-- Adicione mais músicas conforme necessário -->
+        </section>
+        <section id="contato">
+            <h2>Contato</h2>
+            <p>Informações de contato do cantor.</p>
         </section>
     </main>
     <script src="scripts.js"></script>
