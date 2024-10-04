@@ -1,4 +1,4 @@
-/*document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     const expenseForm = document.getElementById('expense-form');
     const expenseList = document.getElementById('expenses');
     const totalAmount = document.getElementById('total-amount');
@@ -85,7 +85,7 @@
     filterDriver.addEventListener('change', applyFilters);
 
     // Função para gerar o PDF
-/*  downloadPdfButton.addEventListener('click', () => {
+ downloadPdfButton.addEventListener('click', () => {
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
 
