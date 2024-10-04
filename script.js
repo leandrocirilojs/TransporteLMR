@@ -121,6 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadExpenses();
 });
 */// Função para gerar o PDF
+// Função para gerar o PDF
 downloadPdfButton.addEventListener('click', () => {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
@@ -131,7 +132,7 @@ downloadPdfButton.addEventListener('click', () => {
 
     // Adiciona uma linha em branco
     doc.setFontSize(12);
-    doc.text('Motorista - Loja - Valor Saída - Recebido - Data', 14, 30);
+    doc.text('Motorista - Loja - Recebido - Pago - Lucro - Data', 14, 30); // Atualizado para incluir todos os campos
 
     // Adiciona cada saída filtrada
     let y = 40;
@@ -144,8 +145,10 @@ downloadPdfButton.addEventListener('click', () => {
 
         // Define o texto com base na opção selecionada
         if (pdfOption === 'empresa') {
-            expenseText = `${expense.store} - R$${expense.amount} - R$${expense.received} - ${expense.date}`;
+            // Inclui todas as informações no PDF da empresa
+            expenseText = `${expense.driver} - ${expense.store} - R$${expense.received} - R$${expense.amount} - R$${expense.profit} - ${expense.date}`;
         } else if (pdfOption === 'motorista') {
+            // Inclui informações resumidas para o motorista
             expenseText = `${expense.driver} - ${expense.store} - R$${expense.amount} - R$${expense.received} - ${expense.date}`;
         }
 
@@ -161,4 +164,3 @@ downloadPdfButton.addEventListener('click', () => {
     // Salva o PDF
     doc.save('Relatorio_de_Saidas.pdf');
 });
-                          
