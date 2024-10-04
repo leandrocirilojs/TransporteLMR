@@ -126,11 +126,11 @@ downloadPdfButton.addEventListener('click', () => {
 
     // Cabeçalho do PDF
     doc.setFontSize(18);
-    doc.text('Relatório de Saídas Filtradas', 14, 20);
+    doc.text('Relatório de Saídas', 14, 20);
 
     // Definir tamanho do texto para o cabeçalho das saídas
     doc.setFontSize(12);
-    doc.text('Motorista - Loja - Valor Saída - Recebido - Lucro - Data', 14, 30);
+    doc.text('Motorista - Loja - Valor Saída - Recebido - Data', 14, 30);
 
     let y = 40;  // Coordenada Y inicial
     const lineHeight = 10;  // Altura de cada linha
