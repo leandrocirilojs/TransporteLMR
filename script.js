@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
     filterDriver.addEventListener('change', applyFilters);
 
     // Função para gerar o PDF
-    /*downloadPdfButton.addEventListener('click', () => {
+    downloadPdfButton.addEventListener('click', () => {
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
 
@@ -118,54 +118,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Carregar todas as saídas ao iniciar
     loadExpenses();
-});
-*/
-downloadPdfButton.addEventListener('click', () => {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-
-    // Cabeçalho do PDF
-    doc.setFontSize(18);
-    doc.text('Relatório de Saídas', 14, 20);
-
-    // Definir tamanho do texto para o cabeçalho das saídas
-    doc.setFontSize(12);
-    doc.text('Motorista - Loja - Valor - Saída - Recebido - Lucro - Data', 14, 30);
-
-    let y = 40;  // Coordenada Y inicial
-    const lineHeight = 10;  // Altura de cada linha
-    const pageHeight = doc.internal.pageSize.height;  // Altura da página do PDF
-    const marginBottom = 20;  // Margem inferior para não cortar o texto
-
-    filteredExpenses.forEach((expense, index) => {
-        const expenseText = `${expense.driver} - ${expense.store} - R$${expense.amount} - R$${expense.received} - R$${expense.profit} - ${expense.date}`;
-        
-        // Dividir o texto para garantir que ele não ultrapasse os limites da página
-        const textLines = doc.splitTextToSize(expenseText, 180);  // Largura máxima do texto
-        
-        // Checar se o próximo bloco de texto ultrapassa o limite da página
-        if (y + (textLines.length * lineHeight) > pageHeight - marginBottom) {
-            doc.addPage();  // Adicionar nova página
-            y = 20;  // Reiniciar a coordenada Y no topo da nova página
-        }
-
-        // Adicionar as linhas de texto
-        textLines.forEach(line => {
-            doc.text(line, 14, y);
-            y += lineHeight;
-        });
-    });
-
-    // Checar se o total cabe na última página, senão, adicionar nova página
-    if (y + lineHeight > pageHeight - marginBottom) {
-        doc.addPage();  // Adicionar nova página
-        y = 20;  // Reiniciar a coordenada Y
-    }
-
-    // Adicionar o total ao PDF
-    doc.setFontSize(14);
-    doc.text(`Total das Saídas: R$${totalValue.toFixed(2)}`, 14, y);
-
-    // Salvar o PDF
-    doc.save('Relatorio_de_Saidas.pdf');
 });
