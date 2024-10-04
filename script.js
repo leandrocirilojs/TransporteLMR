@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let totalValue = 0; // Para somar os valores das saídas
 
         filteredExpenses.forEach((expense, index) => {
-            const expenseText = `${expense.driver} - ${expense.store} - R$${expense.amount} - R$${expense.received} - R$${expense.profit} - ${expense.date}`;
+            const expenseText = `${expense.driver} - ${expense.store} - R$${expense.amount} - R$${expense.received} - ${expense.date}`;
             doc.text(expenseText, 14, y);
             y += 10;  // Move para a próxima linha
             totalValue += parseFloat(expense.amount); // Acumula o valor total
