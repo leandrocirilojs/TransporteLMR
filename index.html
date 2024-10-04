@@ -88,7 +88,16 @@
     </div>
 
 <!-- Botão para baixar o PDF -->
-<button id="download-pdf" style="margin-top: 20px;">Baixar Relatório</button>
+<!-- Substitua este bloco -->
+<!-- <input type="button" id="download-pdf" value="Gerar Relatório"> -->
+
+<!-- Por este bloco -->
+<label for="pdf-option">Escolha o tipo de PDF:</label>
+<select id="pdf-option">
+    <option value="empresa">Gerar PDF Empresa</option>
+    <option value="motorista">Gerar PDF Motorista</option>
+</select>
+<button id="download-pdf">Gerar Relatório</button>
 
     <script>
     const menuToggle = document.getElementById('mobile-menu');
