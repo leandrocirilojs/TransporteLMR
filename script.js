@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('expenses', JSON.stringify(expenses));
 
         loadExpenses();  // Carrega a lista após adicionar uma nova saída
-        expenseForm.reset();
+        // limpar todos os campos ^ expenseForm.reset();
     });
 
     // Remover saída
