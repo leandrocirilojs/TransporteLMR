@@ -86,6 +86,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Função para gerar o PDF
     // Função para gerar o PDF
+
+    // Função para gerar o PDF
 downloadPdfButton.addEventListener('click', () => {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
@@ -96,14 +98,14 @@ downloadPdfButton.addEventListener('click', () => {
 
     // Adiciona uma linha em branco
     doc.setFontSize(12);
-    doc.text('Motorista - Loja - Valor Saída - Recebido - Data', 14, 30); // Removido o "Lucro"
+    doc.text('Motorista - Loja - Valor Saída - Valor Recebido - Data', 14, 30); // Ajuste na linha do cabeçalho
 
     // Adiciona cada saída filtrada
     let y = 40;
     let totalValue = 0; // Para somar os valores das saídas
 
     filteredExpenses.forEach((expense, index) => {
-        // Modificado para não incluir o "Lucro"
+        // Remover o campo lucro e ajustar o texto
         const expenseText = `${expense.driver} - ${expense.store} - R$${expense.amount} - R$${expense.received} - ${expense.date}`;
         doc.text(expenseText, 14, y);
         y += 10;  // Move para a próxima linha
