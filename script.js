@@ -132,7 +132,7 @@ downloadPdfButton.addEventListener('click', () => {
 
     // Adiciona uma linha em branco
     doc.setFontSize(12);
-    doc.text('Motorista - Loja - Recebido - Pago - Lucro - Data', 14, 30); // Atualizado para incluir todos os campos
+    doc.text('Motorista - Loja - Recebido - Lucro - Data', 14, 30); // Atualizado para incluir todos os campos
 
     // Adiciona cada saída filtrada
     let y = 40;
