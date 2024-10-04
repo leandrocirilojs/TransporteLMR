@@ -120,4 +120,4 @@ document.addEventListener('DOMContentLoaded', () => {
     // Carregar todas as saídas ao iniciar
     loadExpenses();
 });
-*/
+
