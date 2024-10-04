@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
     filterDriver.addEventListener('change', applyFilters);
 
     // Função para gerar o PDF
-  downloadPdfButton.addEventListener('click', () => {
+/*  downloadPdfButton.addEventListener('click', () => {
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
 
@@ -120,3 +120,4 @@ document.addEventListener('DOMContentLoaded', () => {
     // Carregar todas as saídas ao iniciar
     loadExpenses();
 });
+*/
