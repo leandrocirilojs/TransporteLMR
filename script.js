@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Adiciona uma linha em branco
         doc.setFontSize(12);
-        doc.text('Motorista - Loja - Valor Saída - Recebido - Lucro - Data', 14, 30);
+        doc.text('Motorista - Loja - Valor Saída - Recebido - Data', 14, 30);
 
         // Adiciona cada saída filtrada
         let y = 40;
