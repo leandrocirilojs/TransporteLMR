@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+
+!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -22,21 +23,45 @@
             background-color: #333;
             color: #fff;
             padding: 1rem;
-            text-align: center;
+            position: relative;
         }
 
-        header nav ul {
+        .logo {
+            text-align: center;
+            font-size: 1.5rem;
+        }
+
+        .menu-icon {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            background-image: url('https://img.icons8.com/ios-filled/50/ffffff/car-wheel.png');
+            background-size: cover;
+        }
+
+        nav {
+            display: none;
+            text-align: center;
+            background-color: #333;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        nav ul {
             list-style-type: none;
         }
 
-        header nav ul li {
-            display: inline;
-            margin: 0 15px;
+        nav ul li {
+            margin: 10px 0;
         }
 
-        header nav ul li a {
+        nav ul li a {
             color: #fff;
             text-decoration: none;
+            font-size: 1.2rem;
         }
 
         .hero {
@@ -67,10 +92,10 @@
 
         .service-item {
             background-color: #fff;
-            padding: 2px;
+            padding: 20px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            width: 90%;
+            width: 30%;
         }
 
         .whatsapp-btn {
@@ -98,15 +123,32 @@
             bottom: 0;
             width: 100%;
         }
+
+        @media (min-width: 768px) {
+            nav {
+                display: block;
+                position: static;
+            }
+
+            nav ul {
+                display: flex;
+                justify-content: center;
+            }
+
+            nav ul li {
+                margin: 0 15px;
+            }
+        }
     </style>
 </head>
 <body>
     <!-- Cabeçalho -->
     <header>
         <div class="logo">
-            <h1>MRL Gestão</h1>
+            <h1>Transportadora XYZ</h1>
         </div>
-        <nav>
+        <div class="menu-icon" id="menu-icon"></div>
+        <nav id="navbar">
             <ul>
                 <li><a href="#home">Início</a></li>
                 <li><a href="#services">Serviços</a></li>
@@ -115,7 +157,6 @@
             </ul>
         </nav>
     </header>
-
     <!-- Seção Inicial -->
     <section id="home" class="hero">
         <h2>Bem-vindo à MRL Gestão de motoristas</h2>
