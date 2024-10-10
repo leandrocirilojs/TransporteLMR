@@ -73,32 +73,20 @@
             width: 30%;
         }
 
-        #contact form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        #contact form label {
-            margin-top: 10px;
-        }
-
-        #contact form input, #contact form textarea {
-            width: 80%;
-            padding: 10px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        #contact form button {
+        .whatsapp-btn {
+            display: inline-block;
             margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
+            padding: 15px 30px;
+            background-color: #25D366;
+            color: white;
+            font-size: 18px;
+            text-decoration: none;
             border-radius: 5px;
             cursor: pointer;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #1ebd57;
         }
 
         footer {
@@ -160,43 +148,15 @@
         <p>Com anos de experiência no mercado, a Transportadora XYZ se destaca pela eficiência, segurança e comprometimento com os clientes. Nosso objetivo é oferecer sempre o melhor serviço de transporte para as suas necessidades.</p>
     </section>
 
-    <!-- Formulário de Contato -->
+    <!-- Contato via WhatsApp -->
     <section id="contact">
-        <h2>Fale Conosco</h2>
-        <form id="contact-form">
-            <label for="name">Nome:</label>
-            <input type="text" id="name" name="name" required>
-
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-
-            <label for="message">Mensagem:</label>
-            <textarea id="message" name="message" required></textarea>
-
-            <button type="submit">Enviar</button>
-        </form>
-        <p id="form-message"></p>
+        <h2>Fale Conosco via WhatsApp</h2>
+        <a href="https://wa.me/55139981335733" class="whatsapp-btn" target="_blank">Entre em Contato via WhatsApp</a>
     </section>
 
     <!-- Rodapé -->
     <footer>
         <p>© 2024 Transportadora XYZ. Todos os direitos reservados.</p>
     </footer>
-
-    <script>
-        document.getElementById('contact-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-
-            if(name && email && message) {
-                document.getElementById('form-message').textContent = 'Obrigado pelo contato, ' + name + '! Entraremos em contato em breve.';
-            } else {
-                document.getElementById('form-message').textContent = 'Por favor, preencha todos os campos.';
-            }
-        });
-    </script>
 </body>
 </html>
