@@ -9,6 +9,52 @@
 </head>
 <body style="background-color: black;">
 
+    <style>
+
+.filters {
+    margin-bottom: 20px; /* Espaço abaixo dos filtros */
+}
+
+.filters button {
+    background-color: #007bff; /* Cor de fundo do botão */
+    color: white; /* Cor do texto do botão */
+    border: none;
+    padding: 10px 15px; /* Preenchimento do botão */
+    cursor: pointer;
+    border-radius: 5px; /* Bordas arredondadas */
+}
+
+.filters button:hover {
+    background-color: #0056b3; /* Cor de fundo ao passar o mouse */
+}
+
+#filter-section {
+    margin-top: 10px; /* Espaço acima da seção de filtros */
+    display: flex;
+    flex-wrap: wrap; /* Permite que os filtros se quebrem para a linha seguinte se não houver espaço */
+}
+
+#filter-section label {
+    width: 100%; /* Cada label ocupa uma linha */
+    margin-top: 10px; /* Espaço acima dos labels */
+}
+
+#filter-section select,
+#filter-section input {
+    width: calc(50% - 10px); /* Define a largura dos campos */
+    margin-right: 10px; /* Espaço entre os campos */
+    padding: 8px; /* Preenchimento interno dos campos */
+    border: 1px solid #ccc; /* Borda dos campos */
+    border-radius: 4px; /* Bordas arredondadas */
+    background-color: #fff; /* Cor de fundo dos campos */
+    color: black; /* Cor do texto dos campos */
+}
+
+#filter-section select:last-child,
+#filter-section input:last-child {
+    margin-right: 0; /* Remove o espaço do último elemento */
+}
+</style>
 <header class="header">
     <div class="logo">
         <h1>MRL Saídas</h1>
