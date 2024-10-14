@@ -64,12 +64,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Remover saída
-    window.removeExpense = (index) => {
+    // Remover saída
+window.removeExpense = (index) => {
+    const password = prompt("Digite a senha para confirmar a remoção:");
+    const correctPassword = "suaSenhaAqui"; // Defina sua senha aqui
+
+    if (password === correctPassword) {
         const expenses = JSON.parse(localStorage.getItem('expenses')) || [];
         expenses.splice(index, 1);  // Remove a saída da lista
         localStorage.setItem('expenses', JSON.stringify(expenses));  // Atualiza o LocalStorage
         loadExpenses();  // Recarrega a lista após a remoção
-    };
+    } else {
+        alert("Senha incorreta! A saída não foi removida.");
+    }
+};
 
     // Função para aplicar os filtros de data e motorista
     const applyFilters = () => {
