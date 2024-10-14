@@ -1,55 +1,122 @@
-downloadPdfButton.addEventListener('click', () => {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
+document.addEventListener('DOMContentLoaded', () => {
+    const expenseForm = document.getElementById('expense-form');
+    const expenseList = document.getElementById('expenses');
+    const totalAmount = document.getElementById('total-amount');
+    const totalProfit = document.getElementById('total-profit');
+    const filterStartDate = document.getElementById('filter-start-date');
+    const filterEndDate = document.getElementById('filter-end-date');
+    const filterDriver = document.getElementById('filter-driver');
+    const downloadPdfButton = document.getElementById('download-pdf');
 
-    const lineHeight = 10;  // Altura de cada linha de texto
-    const pageHeight = doc.internal.pageSize.height;  // Altura da página
-    const marginTop = 20;  // Margem no topo da página
-    const marginBottom = 20;  // Margem na parte inferior da página
-    const marginLeft = 14;  // Margem à esquerda
-    const marginRight = 14;  // Margem à direita
-    let y = marginTop;  // Posição inicial em Y
+    let filteredExpenses = [];  // Armazena as saídas filtradas para o PDF
 
-    // Cabeçalho do PDF
-    doc.setFontSize(18);
-    doc.text('Relatório de Saídas Filtradas', marginLeft, y);
-    y += lineHeight * 2;  // Ajusta o espaço abaixo do cabeçalho
+    // Função para carregar e filtrar saídas
+    const loadExpenses = (filterStartDateValue = null, filterEndDateValue = null, filterDriverValue = null) => {
+        const expenses = JSON.parse(localStorage.getItem('expenses')) || [];
+        expenseList.innerHTML = '';  // Limpa a lista de saídas
+        let total = 0;
+        let totalProf = 0;
 
-    // Subcabeçalho
-    doc.setFontSize(12);
-    doc.text('Motorista - Loja - Valor Saída - Data', marginLeft, y);
-    y += lineHeight;  // Ajuste de espaço após o subcabeçalho
+        filteredExpenses = [];  // Reinicia a lista filtrada
 
-    let totalValue = 0;  // Para acumular o valor total das saídas
+        // Itera sobre cada saída no LocalStorage
+        expenses.forEach((expense, index) => {
+            const dateExpense = new Date(expense.date);  // Converte a data da saída para o formato Date
 
-    // Adiciona cada saída filtrada
-    filteredExpenses.forEach((expense, index) => {
-        const expenseText = `${expense.driver} - ${expense.store} - R$${expense.amount}  - ${expense.date}`;
-        const textLines = doc.splitTextToSize(expenseText, pageHeight - marginRight); // Divide o texto em várias linhas, se necessário
+            const startDateMatch = !filterStartDateValue || dateExpense >= new Date(filterStartDateValue);
+            const endDateMatch = !filterEndDateValue || dateExpense <= new Date(filterEndDateValue);
+            const driverMatch = !filterDriverValue || expense.driver === filterDriverValue;
 
-        // Verifica se o próximo texto cabe na página atual
-        if (y + (textLines.length * lineHeight) > pageHeight - marginBottom) {
-            doc.addPage();  // Adiciona nova página, se necessário
-            y = marginTop;  // Reinicia a posição de Y no topo da nova página
-        }
+            // Verifica se a saída corresponde aos filtros
+            if (startDateMatch && endDateMatch && driverMatch) {
+                const li = document.createElement('li');
+                li.innerHTML = `${expense.driver} - ${expense.store} - R$${expense.amount} - Recebido: R$${expense.received} - Lucro: R$${expense.profit} - ${expense.date} <button onclick="removeExpense(${index})">Remover</button>`;
+                expenseList.appendChild(li);
+                total += parseFloat(expense.amount);
+                totalProf += parseFloat(expense.profit);
 
-        // Adiciona o texto da saída
-        doc.text(textLines, marginLeft, y);
-        y += textLines.length * lineHeight;  // Move para a próxima posição Y
+                filteredExpenses.push(expense);  // Armazena a saída filtrada
+            }
+        });
 
-        totalValue += parseFloat(expense.amount);  // Acumula o valor total
+        // Atualiza os totais
+        totalAmount.textContent = total.toFixed(2);
+        totalProfit.textContent = totalProf.toFixed(2);
+    };
+
+    // Adicionar nova saída
+    expenseForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const driver = document.getElementById('driver-name').value;
+        const store = document.getElementById('store-name').value;
+        const amount = document.getElementById('expense-amount').value;
+        const received = document.getElementById('received-amount').value;
+        const date = document.getElementById('expense-date').value;
+        const profit = (received - amount).toFixed(2);
+
+        const expense = { driver, store, amount, received, profit, date };
+        const expenses = JSON.parse(localStorage.getItem('expenses')) || [];
+        expenses.push(expense);
+        localStorage.setItem('expenses', JSON.stringify(expenses));
+
+        loadExpenses();  // Carrega a lista após adicionar uma nova saída
+        // limpar todos os campos ^ expenseForm.reset();
     });
 
-    // Verifica se o total cabe na página atual
-    if (y + lineHeight > pageHeight - marginBottom) {
-        doc.addPage();  // Adiciona nova página, se necessário
-        y = marginTop;  // Reinicia a posição de Y no topo da nova página
-    }
+    // Remover saída
+    window.removeExpense = (index) => {
+        const expenses = JSON.parse(localStorage.getItem('expenses')) || [];
+        expenses.splice(index, 1);  // Remove a saída da lista
+        localStorage.setItem('expenses', JSON.stringify(expenses));  // Atualiza o LocalStorage
+        loadExpenses();  // Recarrega a lista após a remoção
+    };
 
-    // Adiciona o total ao PDF
-    doc.setFontSize(14);
-    doc.text(`Total das Saídas: R$${totalValue.toFixed(2)}`, marginLeft, y);
+    // Função para aplicar os filtros de data e motorista
+    const applyFilters = () => {
+        const startDate = filterStartDate.value;
+        const endDate = filterEndDate.value;
+        const driver = filterDriver.value;
+        loadExpenses(startDate, endDate, driver);  // Aplica os filtros
+    };
 
-    // Salva o PDF
-    doc.save('Relatorio_de_Saidas.pdf');
+    // Eventos dos filtros de data e motorista
+    filterStartDate.addEventListener('change', applyFilters);
+    filterEndDate.addEventListener('change', applyFilters);
+    filterDriver.addEventListener('change', applyFilters);
+
+    // Função para gerar o PDF
+ downloadPdfButton.addEventListener('click', () => {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        // Cabeçalho do PDF
+        doc.setFontSize(18);
+        doc.text('Relatório de Saídas Filtradas', 14, 20);
+
+        // Adiciona uma linha em branco
+        doc.setFontSize(12);
+        doc.text('Motorista - Loja - Valor Saída - Data', 14, 30);
+
+        // Adiciona cada saída filtrada
+        let y = 40;
+        let totalValue = 0; // Para somar os valores das saídas
+
+        filteredExpenses.forEach((expense, index) => {
+            const expenseText = `${expense.driver} - ${expense.store} - R$${expense.amount}  - ${expense.date}`;
+            //Para adicionar o lucro e recebido no pdf {expense.profit} - - R$${expense.received}
+            doc.text(expenseText, 14, y);
+            y += 10;  // Move para a próxima linha
+            totalValue += parseFloat(expense.amount); // Acumula o valor total
+        });
+
+        // Adiciona o total ao PDF
+        doc.setFontSize(14);
+        doc.text(`Total das Saídas: R$${totalValue.toFixed(2)}`, 14, y);
+        
+        // Salva o PDF
+        doc.save('Relatorio_de_Saidas.pdf');
+    });
+
+    // Carregar todas as saídas ao iniciar
+    loadExpenses();
 });
