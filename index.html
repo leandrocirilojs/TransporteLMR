@@ -60,11 +60,12 @@
             <button type="submit">Adicionar Saída</button>
         </form>
         <div class="expense-list">
-            <h2>Saídas</h2>
+            
             <div class="filters">
     <input type="date" id="filter-start-date" placeholder="Data Início">
     <input type="date" id="filter-end-date" placeholder="Data Fim">
-    <select id="filter-driver">
+  <label for="filter-driver">Filtar por Motorista</label>
+                <select id="filter-driver">
     <option value="">Sem Filtros</option> <!-- Opção para não aplicar filtro -->
     <option value="Weverton">Weverton</option>
     <option value="Alexandre">Alexandre</option>
@@ -91,6 +92,7 @@
     </select>
                 
 </div>
+            <h2>Saídas</h2>
             <ul id="expenses"></ul>
         </div>
         <div class="total">
