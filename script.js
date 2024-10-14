@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
     filterDriver.addEventListener('change', applyFilters);
 
     // Função para gerar o PDF
- downloadPdfButton.addEventListener('click', () => {
+    downloadPdfButton.addEventListener('click', () => {
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
 
@@ -107,6 +107,12 @@ document.addEventListener('DOMContentLoaded', () => {
             doc.text(expenseText, 14, y);
             y += 10;  // Move para a próxima linha
             totalValue += parseFloat(expense.amount); // Acumula o valor total
+
+            // Verifica se a posição y excede a altura da página e cria uma nova página, se necessário
+            if (y > doc.internal.pageSize.height - 20) {
+                doc.addPage();
+                y = 10; // Reseta a posição y para o topo da nova página
+            }
         });
 
         // Adiciona o total ao PDF
