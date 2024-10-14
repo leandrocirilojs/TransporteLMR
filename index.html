@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body style="background-color: black;">
-    
+
 <header class="header">
     <div class="logo">
         <h1>MRL Saídas</h1>
@@ -28,106 +28,104 @@
     </nav>
 </header>
 
+<div class="container">
+    <h1>Controle de Saídas da Transportadora</h1>
+    <form id="expense-form">
+        <select id="driver-name" required>
+            <option value="" disabled selected>Selecione o Motorista</option>
+            <option value="Weverton">Weverton</option>
+            <option value="Alexandre">Alexandre</option>
+            <option value="Leandro">Leandro</option>
+            <option value="Eder">Eder</option>
+            <option value="Marcos">Marcos</option>
+            <option value="Motorista1">Motorista1</option>
+            <option value="Motorista2">Motorista2</option>
+            <option value="Motorista3">Motorista3</option>
+            <option value="Motorista4">Henrique</option>
+        </select>
+        <select id="store-name" required>
+            <option value="">Selecione a Loja</option>
+            <option value="Tenda Itanhaém">Tenda Itanhaém</option>
+            <option value="Tenda Praia Grande">Tenda Praia Grande</option>
+            <option value="Krill Cubatão">Krill Cubatão</option>
+            <option value="Krill Mongaguá">Krill Mongaguá</option>
+            <option value="Krill Praia Grande">Krill Praia Grande</option>
+            <option value="Carrefour São Vicente">Carrefour São Vicente</option>
+        </select>
+        <input type="number" id="expense-amount" placeholder="Valor da Saída" required>
+        <input type="number" id="received-amount" placeholder="Valor Recebido" required>
+        <input type="date" id="expense-date" required>
+        <button type="submit">Adicionar Saída</button>
+    </form>
 
-    
-    <div class="container">
-        <h1>Controle de Saídas da Transportadora</h1>
-        <form id="expense-form">
-            <select id="driver-name" required>
-                <option value="" disabled selected>Selecione o Motorista</option>
-                <option value="Weverton">Weverton</option>
-                <option value="Alexandre">Alexandre</option>
-                <option value="Leandro">Leandro</option>
-                <option value="Eder">Eder</option>
-                <option value="Marcos">Marcos</option>
-                <option value="Motorista1">Motorista1</option>
-                <option value="Motorista2">Motorista2</option>
-                <option value="Motorista3">Motorista3</option>
-<option value="Motorista4">Henrique</option>
-            </select>
-            <select id="store-name" required>
-                <option value="">Selecione a Loja</option>
-                <option value="Tenda Itanhaém">Tenda Itanhaém</option>
-                <option value="Tenda Praia Grande">Tenda Praia Grande</option>
-                <option value="Krill Cubatão">Krill Cubatão</option>
-                <option value="Krill Mongaguá">Krill Mongaguá</option>
-                <option value="Krill Praia Grande">Krill Praia Grande</option>
-                <option value="Carrefour São Vicente">Carrefour São Vicente</option>
-            </select>
-            <input type="number" id="expense-amount" placeholder="Valor da Saída" required>
-            <input type="number" id="received-amount" placeholder="Valor Recebido" required>
-            <input type="date" id="expense-date" required>
-            <button type="submit">Adicionar Saída</button>
-        </form>
-        <div class="expense-list">
-            
-            <div class="filters">
+    <div class="expense-list">
+        <div class="filters">
+            <button id="toggle-filters">Exibir Filtros</button>
+            <div id="filter-section" style="display: none;">
                 <label>Filtrar por Data</label>
-    <input type="date" id="filter-start-date" placeholder="Data Início">
-    <input type="date" id="filter-end-date" placeholder="Data Fim">
-  <label for="filter-driver">Filtar por Motorista</label>
+                <input type="date" id="filter-start-date" placeholder="Data Início">
+                <input type="date" id="filter-end-date" placeholder="Data Fim">
+                <label for="filter-driver">Filtrar por Motorista</label>
                 <select id="filter-driver">
-    <option value="">Selecione o Motorista</option> <!-- Opção para não aplicar filtro -->
-    <option value="Weverton">Weverton</option>
-    <option value="Alexandre">Alexandre</option>
-    <option value="Leandro">Leandro</option>
-    <option value="Eder">Eder</option>
-    <option value="Marcos">Marcos</option>
-    <option value="Motorista1">Motorista1</option>
-    <option value="Motorista2">Motorista2</option>
-        <option value="Motorista3">Motorista3</option>
-<option value="Motorista4">Henrique</option>
-
-
-    </select>
-<label for="filter-store">Filtrar por Loja:</label>
-    <select id="filter-store">
-        <option value="">Selecione a Loja</option>
-                <option value="Tenda Itanhaém">Tenda Itanhaém</option>
-                <option value="Tenda Praia Grande">Tenda Praia Grande</option>
-                <option value="Krill Cubatão">Krill Cubatão</option>
-                <option value="Krill Mongaguá">Krill Mongaguá</option>
-                <option value="Krill Praia Grande">Krill Praia Grande</option>
-                <option value="Carrefour São Vicente">Carrefour São Vicente</option>
-        <!-- Adicione mais lojas conforme necessário -->
-    </select>
-                
-</div>
-            <h2>Saídas</h2>
-            <ul id="expenses"></ul>
+                    <option value="">Selecione o Motorista</option> <!-- Opção para não aplicar filtro -->
+                    <option value="Weverton">Weverton</option>
+                    <option value="Alexandre">Alexandre</option>
+                    <option value="Leandro">Leandro</option>
+                    <option value="Eder">Eder</option>
+                    <option value="Marcos">Marcos</option>
+                    <option value="Motorista1">Motorista1</option>
+                    <option value="Motorista2">Motorista2</option>
+                    <option value="Motorista3">Motorista3</option>
+                    <option value="Motorista4">Henrique</option>
+                </select>
+                <label for="filter-store">Filtrar por Loja:</label>
+                <select id="filter-store">
+                    <option value="">Selecione a Loja</option>
+                    <option value="Tenda Itanhaém">Tenda Itanhaém</option>
+                    <option value="Tenda Praia Grande">Tenda Praia Grande</option>
+                    <option value="Krill Cubatão">Krill Cubatão</option>
+                    <option value="Krill Mongaguá">Krill Mongaguá</option>
+                    <option value="Krill Praia Grande">Krill Praia Grande</option>
+                    <option value="Carrefour São Vicente">Carrefour São Vicente</option>
+                </select>
+            </div>
         </div>
-        <div class="total">
-            <h2>Pagamento Motorista: R$<span id="total-amount">0.00</span></h2>
-            <h2>Lucro Total: R$<span id="total-profit">0.00</span></h2>
-        </div>
+        
+        <h2>Saídas</h2>
+        <ul id="expenses"></ul>
     </div>
 
-<!-- Botão para baixar o PDF -->
-<!-- Substitua este bloco -->
-<!-- Substitua este bloco -->
-<!-- <input type="button" id="download-pdf" value="Gerar Relatório"> -->
+    <div class="total">
+        <h2>Pagamento Motorista: R$<span id="total-amount">0.00</span></h2>
+        <h2>Lucro Total: R$<span id="total-profit">0.00</span></h2>
+    </div>
 
-<!-- Por este bloco -->
-
-<!--<button id="download-pdf">Gerar Relatório</button>
-<!-- Por este bloco -->
+    <!-- Botão para baixar o PDF -->
     <select id="pdf-option">
-    <option value="empresa">Gerar PDF Empresa</option>
-    <option value="motorista">Gerar PDF Motorista</option>
-</select>
-<button id="download-pdf">Gerar Relatório</button>
+        <option value="empresa">Gerar PDF Empresa</option>
+        <option value="motorista">Gerar PDF Motorista</option>
+    </select>
+    <button id="download-pdf">Gerar Relatório</button>
+</div>
 
-
-    <script>
+<script>
     const menuToggle = document.getElementById('mobile-menu');
     const navLinks = document.getElementById('nav-links');
+    const toggleFiltersButton = document.getElementById('toggle-filters');
+    const filterSection = document.getElementById('filter-section');
 
     menuToggle.addEventListener('click', () => {
         navLinks.classList.toggle('active');
     });
-    </script>
-    
-    <script src="script.js"></script>
-    
+
+    toggleFiltersButton.addEventListener('click', () => {
+        const isHidden = filterSection.style.display === 'none';
+        filterSection.style.display = isHidden ? 'block' : 'none';
+        toggleFiltersButton.textContent = isHidden ? 'Ocultar Filtros' : 'Exibir Filtros';
+    });
+</script>
+
+<script src="script.js"></script>
+
 </body>
 </html>
