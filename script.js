@@ -67,8 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Remover saída
     window.removeExpense = (index) => {
-        const password = prompt("Digite a senha para confirmar a remoção:");
-        const correctPassword = "suaSenhaAqui"; // Defina sua senha aqui
+        const password = prompt("2702..Digite a senha para confirmar a remoção:");
+        const correctPassword = "270207"; // Defina sua senha aqui
 
         if (password === correctPassword) {
             const expenses = JSON.parse(localStorage.getItem('expenses')) || [];
