@@ -11,6 +11,8 @@
 
     
 <header class="header">
+
+<header class="header">
     <div class="logo">
         <h1>MRL Saídas</h1>
     </div>
@@ -24,11 +26,20 @@
             <li><a href="https://leandrocirilojs.github.io/TransporteLMR/site.html#home">Inicio</a></li>
             <li><a href="https://leandrocirilojs.github.io/TransporteLMR/chatcliente.html">WhatsApp</a></li>
             <li><a href="https://leandrocirilojs.github.io/TransporteLMR/?">Relatórios</a></li>
-            <li><a href="#"></a></li>
+            <li><a href="#">Contato</a></li>
         </ul>
     </nav>
 </header>
 
+<script>
+    const menuToggle = document.getElementById('mobile-menu');
+    const navLinks = document.getElementById('nav-links');
+
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        menuToggle.classList.toggle('active');  // Alterna a animação do ícone hambúrguer
+    });
+</script>
 <div class="container">
     <h1>Controle de Saídas da Transportadora</h1>
     <form id="expense-form">
@@ -109,22 +120,6 @@
     <button id="download-pdf">Gerar Relatório</button>
 </div>
 
-<script>
-    const menuToggle = document.getElementById('mobile-menu');
-    const navLinks = document.getElementById('nav-links');
-    const toggleFiltersButton = document.getElementById('toggle-filters');
-    const filterSection = document.getElementById('filter-section');
-
-    menuToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-    });
-
-    toggleFiltersButton.addEventListener('click', () => {
-        const isHidden = filterSection.style.display === 'none';
-        filterSection.style.display = isHidden ? 'block' : 'none';
-        toggleFiltersButton.textContent = isHidden ? 'Ocultar Filtros' : 'Exibir Filtros';
-    });
-</script>
 
 <script src="script.js"></script>
 
