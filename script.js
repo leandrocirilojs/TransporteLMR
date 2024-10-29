@@ -31,41 +31,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Verifica se a saída corresponde aos filtros
             if (startDateMatch && endDateMatch && driverMatch && storeMatch) {
-                const li = document.createElement('div');
+                const li = document.createElement('li');
                 li.innerHTML = `
-                <div>
-                <h2>${expense.driver}</h2>
-                <p>${expense.store}</p>
-                </div>
-                </br>
-                <div>
-                <table style="width: 100%;
-margin: 8px">
-                      <tr>
-                          <td style="padding:8px;
-vertical-align: top">
-                              <p style="color:orange">Valor Pago</p>
-                              <p>R$${expense.amount}</p>
-                          </td> 
-                          <td style="padding:8px;
-vertical-align: top">
-                              <p>Recebido</p>
-                              <p>R$${expense.received}</p>
-                          </td>
-                      </tr>
-                      <tr>
-                         <td style="padding:8px;
-vertical-align: top">
-                             <p style="color:green">Lucro</p>
-                              <p>R$${expense.profit}</p>
-                        </td>
-                         <td style="padding:8px;
-vertical-align: top">
-                            <p>Data</p>
-                            </p>${expense.date}</p>
-                         </td>
-                        </tr>
-                    </table> <button onclick="removeExpense(${index})">X</button></div>`;
+    <div style="width: 300px; background-color: #ffffff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 20px; position: relative; font-family: Arial, sans-serif;">
+        <button onclick="removeExpense(${index})" style="position: absolute; top: 15px; right: 15px; color: red; font-weight: bold; border: none; background: none; font-size: 20px; cursor: pointer;">&times;</button>
+        <div>
+            <h2 style="margin: 0; font-size: 1.5em; color: #333;">${expense.driver}</h2>
+            <p style="margin: 5px 0; color: #666;">${expense.store}</p>
+        </div>
+        
+        <table style="width: 100%; margin-top: 20px;">
+            <tr>
+                <td style="padding: 8px; vertical-align: top;">
+                    <p style="font-size: 0.9em; color: #666;">Valor Pago</p>
+                    <p style="font-size: 1.2em; font-weight: bold; color: #333;">R$${expense.amount}</p>
+                </td>
+                <td style="padding: 8px; vertical-align: top;">
+                    <p style="font-size: 0.9em; color: #666;">Recebido</p>
+                    <p style="font-size: 1.2em; font-weight: bold; color: #333;">R$${expense.received}</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 8px; vertical-align: top;">
+                    <p style="font-size: 0.9em; color: #666;">Lucro</p>
+                    <p style="font-size: 1.2em; font-weight: bold; color: green;">R$${expense.profit}</p>
+                </td>
+                <td style="padding: 8px; vertical-align: top;">
+                    <p style="font-size: 0.9em; color: #666;">Data</p>
+                    <p style="font-size: 1.2em; font-weight: bold; color: #333;">${expense.date}</p>
+                </td>
+            </tr>
+        </table>
+    </div>`;
                 expenseList.appendChild(li);
                 total += parseFloat(expense.amount);
                 totalProf += parseFloat(expense.profit);
