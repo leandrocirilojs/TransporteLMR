@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Verifica se a saída corresponde aos filtros
             if (startDateMatch && endDateMatch && driverMatch && storeMatch) {
-                const li = document.createElement('li');
+                const li = document.createElement('div');
                 li.innerHTML = `
                 <div>
                 <h2>${expense.driver}</h2>
