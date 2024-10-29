@@ -38,17 +38,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 <table>
                       <tr>
                           <td>
+                              <p>Valor Pago</p>
                               <p>R$${expense.amount}</p>
                           </td> 
                           <td>
-                              <p>Recebido: R$${expense.received}</p>
+                              <p>Recebido</p>
+                              <p>R$${expense.received}</p>
                           </td>
                       </tr>
                       <tr>
                          <td>
-                              <p> Lucro: R$${expense.profit}</p>
+                             <p>Lucro</p>
+                              <p>R$${expense.profit}</p>
                         </td>
                          <td>
+                            <p>Data</p>
                             </p>${expense.date}</p>
                          </td>
                         </tr>
