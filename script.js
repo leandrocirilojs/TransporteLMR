@@ -43,7 +43,7 @@ margin-top: 20px">
                       <tr>
                           <td style="padding:8px;
 vertical-align: top">
-                              <p>Valor Pago</p>
+                              <p style="color:orange">Valor Pago</p>
                               <p>R$${expense.amount}</p>
                           </td> 
                           <td style="padding:8px;
@@ -55,7 +55,7 @@ vertical-align: top">
                       <tr>
                          <td style="padding:8px;
 vertical-align: top">
-                             <p>Lucro</p>
+                             <p style="color:green">Lucro</p>
                               <p>R$${expense.profit}</p>
                         </td>
                          <td style="padding:8px;
