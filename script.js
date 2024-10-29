@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Verifica se a saída corresponde aos filtros
             if (startDateMatch && endDateMatch && driverMatch && storeMatch) {
                 const li = document.createElement('li');
-                li.innerHTML = `<h1>${expense.driver}</h1> <p>${expense.store}</p> - R$${expense.amount} - Recebido: R$${expense.received} - Lucro: R$${expense.profit} - ${expense.date} <button onclick="removeExpense(${index})">X</button>`;
+                li.innerHTML = `<h4>${expense.driver}</h4> <p>${expense.store}</p> <table>R$${expense.amount} - Recebido: R$${expense.received} - Lucro: R$${expense.profit} - ${expense.date}</table> <button onclick="removeExpense(${index})">X</button>`;
                 expenseList.appendChild(li);
                 total += parseFloat(expense.amount);
                 totalProf += parseFloat(expense.profit);
