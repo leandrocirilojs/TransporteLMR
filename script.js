@@ -33,8 +33,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (startDateMatch && endDateMatch && driverMatch && storeMatch) {
                 const li = document.createElement('li');
                 li.innerHTML = `
+                <div>
                 <h4>${expense.driver}</h4>
                 <p>${expense.store}</p>
+                </div>
                 <table>
                       <tr>
                           <td>
