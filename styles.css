@@ -68,6 +68,9 @@ button:hover {
 .expense-list ul {
     list-style-type: none;
     padding: 0;
+/*remover caso der errado*/
+    display: flex;
+    justify-content: space-between;
 }
 
 .expense-list li {
