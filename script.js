@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h2>${expense.driver}</h2>
                 <p>${expense.store}</p>
                 </div>
+                </br>
                 <div>
                 <table style="width: 100%;
 margin-top: 20px">
