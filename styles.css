@@ -1,130 +1,98 @@
-/* Fonte e cores */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-* {
-    font-family: 'Roboto', sans-serif;
-    box-sizing: border-box;
+/* Estilo do cabeçalho */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #ff4d00;
+    color: white;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Estilo do logo */
+.logo h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Menu nav */
+.nav ul {
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
     margin: 0;
     padding: 0;
 }
 
-body {
-    background-color: #f0f3f5;
-    color: #333;
-}
-
-/* Container */
-.container {
-    max-width: 900px;
-    margin: 60px auto;
-    padding: 30px;
-    background-color: #ffffff;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 12px;
-    color: #333;
-}
-
-/* Títulos */
-h1, h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #007bff;
-}
-
-/* Formulário */
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-input, select, button {
-    padding: 10px;
+.nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
     font-size: 16px;
-    border-radius: 6px;
-    border: 1px solid #ddd;
-    transition: border-color 0.3s, background-color 0.3s;
 }
 
-input:focus, select:focus {
-    border-color: #007bff;
-    outline: none;
+.nav ul li a:hover {
+    color: #ffcccb;
 }
 
-/* Botão */
-button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
+/* Menu hambúrguer */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
     cursor: pointer;
-    transition: background-color 0.3s;
-    font-weight: bold;
 }
 
-button:hover {
-    background-color: #0056b3;
+.menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 4px 0;
+    transition: 0.4s;
 }
 
-/* Lista de Saídas */
-.expense-list ul {
-    list-style-type: none;
-    padding: 0;
-}
+/* Menu mobile */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
 
-.expense-list li {
-    background-color: #f7f9fc;
-    margin: 5px 0;
-    padding: 15px;
-    border: 1px solid #e0e6ed;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 8px;
-    transition: background-color 0.3s;
-}
+    .nav {
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background-color: #ff4d00;
+        width: 100%;
+        height: 100vh;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
 
-.expense-list li:hover {
-    background-color: #e6effc;
-}
+    .nav.active {
+        display: flex;
+    }
 
-/* Botão Remover Saída */
-.expense-list button {
-    background-color: #dc3545;
-    color: #fff;
-    padding: 8px 12px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-}
+    .nav ul {
+        flex-direction: column;
+        gap: 20px;
+    }
 
-.expense-list button:hover {
-    background-color: #c82333;
-}
+    /* Animação do menu hambúrguer */
+    .menu-toggle.active .bar:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
 
-/* Totais */
-.total h2 {
-    color: #28a745;
-    font-weight: bold;
-}
+    .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
 
-/* Filtros */
-.filters {
-    display: flex;
-    justify-content: space-between;
-    gap: 15px;
-    margin-bottom: 15px;
-}
-
-#filter-section {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 15px;
-}
-#filter-section select, #filter-section input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    background-color: #fff;
-    color: black;
+    .menu-toggle.active .bar:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
+    }
 }
