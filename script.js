@@ -37,23 +37,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h4>${expense.driver}</h4>
                 <p>${expense.store}</p>
                 </div>
-                <table>
+                <table style="width: 100%;
+margin-top: 20px">
                       <tr>
-                          <td>
+                          <td style="padding:8px;
+vertical-align: top">
                               <p>Valor Pago</p>
                               <p>R$${expense.amount}</p>
                           </td> 
-                          <td>
+                          <td style="padding:8px;
+vertical-align: top">
                               <p>Recebido</p>
                               <p>R$${expense.received}</p>
                           </td>
                       </tr>
                       <tr>
-                         <td>
+                         <td style="padding:8px;
+vertical-align: top">
                              <p>Lucro</p>
                               <p>R$${expense.profit}</p>
                         </td>
-                         <td>
+                         <td style="padding:8px;
+vertical-align: top">
                             <p>Data</p>
                             </p>${expense.date}</p>
                          </td>
