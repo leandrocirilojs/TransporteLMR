@@ -34,9 +34,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const li = document.createElement('li');
                 li.innerHTML = `
                 <div>
-                <h4>${expense.driver}</h4>
+                <h2>${expense.driver}</h2>
                 <p>${expense.store}</p>
                 </div>
+                <div>
                 <table style="width: 100%;
 margin-top: 20px">
                       <tr>
@@ -63,7 +64,7 @@ vertical-align: top">
                             </p>${expense.date}</p>
                          </td>
                         </tr>
-                    </table> <button onclick="removeExpense(${index})">X</button>`;
+                    </table> <button onclick="removeExpense(${index})">X</button></div>`;
                 expenseList.appendChild(li);
                 total += parseFloat(expense.amount);
                 totalProf += parseFloat(expense.profit);
