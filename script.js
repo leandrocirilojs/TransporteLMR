@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <div style="width: 300px; background-color: #ffffff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 20px; position: relative; font-family: Arial, sans-serif;">
         <button onclick="removeExpense(${index})" style="position: absolute; top: 15px; right: 15px; color: red; font-weight: bold; border: none; background: none; font-size: 20px; cursor: pointer;">&times;</button>
         <div>
-            <h2 style="margin: 0; font-size: 1.5em; color: #333;">${expense.driver}</h2>
+            <h2 style="margin: 0; text-align: center; font-size: 1.5em; color: #333;">${expense.driver}</h2>
             <p style="margin: 5px 0; color: #666;">${expense.store}</p>
         </div>
         
