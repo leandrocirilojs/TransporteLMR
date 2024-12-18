@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let totalValue = 0; // Para somar os valores das saídas
 
         filteredExpenses.forEach((expense) => {
-            const expenseText = `${expense.driver} - ${expense.store} - R$${expense.received} - ${expense.date}`;
+            const expenseText = `${expense.driver} - ${expense.store} - R$ ${expense.received} - ${expense.date}`;
             // Para adicionar o lucro e recebido no pdf {expense.profit} - - R$${expense.amounf?}
             doc.text(expenseText, 14, y);
             y += 10;  // Move para a próxima linha
