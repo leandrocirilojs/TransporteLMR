@@ -144,10 +144,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         filteredExpenses.forEach((expense) => {
             const expenseText = `${expense.driver} - ${expense.store} - R$ ${expense.received} - ${expense.date}`;
-            // Para adicionar o lucro e recebido no pdf {expense.profit} - - R$${expense.amounf?}
+            // Para adicionar o lucro e recebido no pdf {expense.profit} - - R$${expense.amount?}
             doc.text(expenseText, 14, y);
             y += 10;  // Move para a próxima linha
-            totalValue += parseFloat(expense.amount); // Acumula o valor total
+            totalValue += parseFloat(expense.received); // Acumula o valor total
         });
 
         // Adiciona o total ao PDF
