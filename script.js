@@ -133,36 +133,63 @@ document.addEventListener('DOMContentLoaded', () => {
     // Cabeçalho do PDF
     doc.setFontSize(18);
     doc.text('Fechamento Tenda', 14, 20);
+    doc.setFontSize(16);
+    doc.text('Itanhaém', 14, 30);
+    doc.text('Marcos Juvencio Peres', 14, 40);
 
-    // Adiciona o intervalo de datas do filtro
-    const startDate = filterStartDate.value || 'Não especificada';
-    const endDate = filterEndDate.value || 'Não especificada';
+    // Período do filtro
+    const startDate = new Date(filterStartDate.value);
+    const endDate = new Date(filterEndDate.value);
+    const formattedStart = startDate.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long' });
+    const formattedEnd = endDate.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long' });
     doc.setFontSize(14);
-    doc.text(`Período: ${startDate} a ${endDate}`, 14, 30); // Adiciona o período do filtro
+    doc.text(`Mês ${formattedStart} - ${formattedEnd}`, 14, 50);
 
-    // Adiciona o título das colunas
-    doc.text('Motorista - Loja - Valor - Data', 14, 40);
-
-    // Adiciona cada saída filtrada
-    let y = 50;
-    let totalValue = 0; // Para somar os valores das saídas
-
+    // Agrupamento por data
+    const expensesByDate = {};
     filteredExpenses.forEach((expense) => {
-        const expenseText = `${expense.driver} - ${expense.store} - R$ ${expense.received} - ${expense.date}`;
-        doc.text(expenseText, 14, y);
-        y += 10; // Move para a próxima linha
-        totalValue += parseFloat(expense.received); // Acumula o valor total
+        const expenseDate = new Date(expense.date).toLocaleDateString('pt-BR');
+        if (!expensesByDate[expenseDate]) {
+            expensesByDate[expenseDate] = 0;
+        }
+        expensesByDate[expenseDate] += 1;
     });
 
-    // Adiciona o total e a quantidade de saídas ao PDF
+    // Preenchimento dos dias do período
+    let y = 60;
+    let totalSaidas = 0;
+    const currentDate = new Date(startDate);
+    const totalValue = filteredExpenses.reduce((sum, expense) => sum + parseFloat(expense.received), 0);
+
+    while (currentDate <= endDate) {
+        const dateKey = currentDate.toLocaleDateString('pt-BR');
+        const day = currentDate.getDate().toString().padStart(2, '0');
+        const isSunday = currentDate.getDay() === 0;
+
+        if (isSunday) {
+            doc.text(`${day} - Domingo`, 14, y);
+        } else if (expensesByDate[dateKey]) {
+            const numSaidas = expensesByDate[dateKey];
+            totalSaidas += numSaidas;
+            doc.text(`${day} - ${numSaidas} Saída${numSaidas > 1 ? 's' : ''}`, 14, y);
+        } else {
+            doc.text(`${day} -`, 14, y);
+        }
+
+        y += 10;
+        currentDate.setDate(currentDate.getDate() + 1);
+    }
+
+    // Adiciona totalizações ao final do PDF
+    y += 10; // Espaçamento antes do resumo
     doc.setFontSize(14);
-    y += 10; // Espaço antes do texto final
-    doc.text(`Quantidade de Saídas: ${filteredExpenses.length}`, 14, y); // Adiciona a quantidade de saídas
+    doc.text(`Total de Saídas: ${totalSaidas} Saída${totalSaidas > 1 ? 's' : ''}`, 14, y);
     y += 10;
-    doc.text(`Valor Total: R$${totalValue.toFixed(2)}`, 14, y);
+    doc.text(`Valor Total: R$ ${totalValue.toFixed(2)}`, 14, y);
 
     // Salva o PDF
-    doc.save('Relatorio_de_Saidas.pdf');
+    doc.save('Fechamento_Tenda.pdf');
+});
 });
     // Carregar todas as saídas ao iniciar
     loadExpenses();
