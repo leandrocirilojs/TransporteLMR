@@ -127,39 +127,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Função para gerar o PDF
     downloadPdfButton.addEventListener('click', () => {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
 
-        // Cabeçalho do PDF
-        doc.setFontSize(18);
-        doc.text('Fechamento Tenda', 14, 20);
+    // Cabeçalho do PDF
+    doc.setFontSize(18);
+    doc.text('Fechamento Tenda', 14, 20);
 
-        // Adiciona uma linha em branco
-        doc.setFontSize(14);
-        doc.text('Motorista - Loja - Valor - Data', 14, 30);
+    // Adiciona o intervalo de datas do filtro
+    const startDate = filterStartDate.value || 'Não especificada';
+    const endDate = filterEndDate.value || 'Não especificada';
+    doc.setFontSize(14);
+    doc.text(`Período: ${startDate} a ${endDate}`, 14, 30); // Adiciona o período do filtro
 
-        // Adiciona cada saída filtrada
-        let y = 40;
-        let totalValue = 0; // Para somar os valores das saídas
+    // Adiciona o título das colunas
+    doc.text('Motorista - Loja - Valor - Data', 14, 40);
 
-        filteredExpenses.forEach((expense) => {
-            const expenseText = `${expense.driver} - ${expense.store} - R$ ${expense.received} - ${expense.date}`;
-            // Para adicionar o lucro e recebido no pdf {expense.profit} - - R$${expense.amount?}
-            doc.text(expenseText, 14, y);
-            y += 10;  // Move para a próxima linha
-            totalValue += parseFloat(expense.received); // Acumula o valor total
-        });
+    // Adiciona cada saída filtrada
+    let y = 50;
+    let totalValue = 0; // Para somar os valores das saídas
 
-        // Adiciona o total ao PDF
-        doc.setFontSize(14);
-        doc.text(`Valor Total: R$ ${totalValue.toFixed(2)}`, 14, y);
-        doc.text(`Quantida de Saídas: ${filteredExpenses.length}`, 14, y);
-        
-        
-        // Salva o PDF
-        doc.save('Relatorio_de_Saidas.pdf');
+    filteredExpenses.forEach((expense) => {
+        const expenseText = `${expense.driver} - ${expense.store} - R$ ${expense.received} - ${expense.date}`;
+        doc.text(expenseText, 14, y);
+        y += 10; // Move para a próxima linha
+        totalValue += parseFloat(expense.received); // Acumula o valor total
     });
 
+    // Adiciona o total e a quantidade de saídas ao PDF
+    doc.setFontSize(14);
+    y += 10; // Espaço antes do texto final
+    doc.text(`Quantidade de Saídas: ${filteredExpenses.length}`, 14, y); // Adiciona a quantidade de saídas
+    y += 10;
+    doc.text(`Total das Saídas: R$${totalValue.toFixed(2)}`, 14, y);
+
+    // Salva o PDF
+    doc.save('Relatorio_de_Saidas.pdf');
+});
     // Carregar todas as saídas ao iniciar
     loadExpenses();
 });
