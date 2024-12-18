@@ -190,7 +190,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Salva o PDF
     doc.save('Fechamento_Tenda.pdf');
 });
-});
     // Carregar todas as saídas ao iniciar
     loadExpenses();
 });
