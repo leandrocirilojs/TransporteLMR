@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
     y += 10; // Espaço antes do texto final
     doc.text(`Quantidade de Saídas: ${filteredExpenses.length}`, 14, y); // Adiciona a quantidade de saídas
     y += 10;
-    doc.text(`Total das Saídas: R$${totalValue.toFixed(2)}`, 14, y);
+    doc.text(`Valor Total: R$${totalValue.toFixed(2)}`, 14, y);
 
     // Salva o PDF
     doc.save('Relatorio_de_Saidas.pdf');
