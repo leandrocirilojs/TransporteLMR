@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const filterStartDate = document.getElementById('filter-start-date');
     const filterEndDate = document.getElementById('filter-end-date');
     const filterDriver = document.getElementById('filter-driver');
-    const filterStore = document.getElementById('filter-store'); // Novo filtro
+    const filterStore = document.getElementById('filter-store'); // Filtro de loja
     const downloadPdfButton = document.getElementById('download-pdf');
 
     let filteredExpenses = [];  // Armazena as saídas filtradas para o PDF
@@ -76,120 +76,64 @@ document.addEventListener('DOMContentLoaded', () => {
         totalProfit.textContent = totalProf.toFixed(2);
     };
 
-    // Adicionar nova saída
-    expenseForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const driver = document.getElementById('driver-name').value;
-        const store = document.getElementById('store-name').value;
-        const amount = document.getElementById('expense-amount').value;
-        const received = document.getElementById('received-amount').value;
-        const date = document.getElementById('expense-date').value;
-        const profit = (received - amount).toFixed(2);
-
-        const expense = { driver, store, amount, received, profit, date };
-        const expenses = JSON.parse(localStorage.getItem('expenses')) || [];
-        expenses.push(expense);
-        localStorage.setItem('expenses', JSON.stringify(expenses));
-
-        loadExpenses();  // Carrega a lista após adicionar uma nova saída
-        // limpar todos os campos ^ expenseForm.reset();
-    });
-
-    // Remover saída
-    window.removeExpense = (index) => {
-        const password = prompt("2702..Digite a senha para confirmar a remoção:");
-        const correctPassword = ""; // Defina sua senha aqui
-
-        if (password === correctPassword) {
-            const expenses = JSON.parse(localStorage.getItem('expenses')) || [];
-            expenses.splice(index, 1);  // Remove a saída da lista
-            localStorage.setItem('expenses', JSON.stringify(expenses));  // Atualiza o LocalStorage
-            loadExpenses();  // Recarrega a lista após a remoção
-        } else {
-            alert("Senha incorreta! A saída não foi removida.");
-        }
-    };
-
-    // Função para aplicar os filtros de data, motorista e loja
-    const applyFilters = () => {
-        const startDate = filterStartDate.value;
-        const endDate = filterEndDate.value;
-        const driver = filterDriver.value;
-        const store = filterStore.value; // Obtemos o valor do filtro de loja
-        loadExpenses(startDate, endDate, driver, store);  // Aplica os filtros
-    };
-
-    // Eventos dos filtros de data, motorista e loja
-    filterStartDate.addEventListener('change', applyFilters);
-    filterEndDate.addEventListener('change', applyFilters);
-    filterDriver.addEventListener('change', applyFilters);
-    filterStore.addEventListener('change', applyFilters); // Adiciona o evento para o filtro de loja
-
     // Função para gerar o PDF
     downloadPdfButton.addEventListener('click', () => {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
 
-    // Cabeçalho do PDF
-    doc.setFontSize(18);
-    doc.text('Fechamento Tenda', 14, 20);
-    doc.setFontSize(16);
-    doc.text('Itanhaém', 14, 30);
-    doc.text('Marcos Juvencio Peres', 14, 40);
+        // Cabeçalho do PDF
+        doc.setFontSize(18);
+        doc.text('Fechamento Tenda', 14, 20);
 
-    // Período do filtro
-    const startDate = new Date(filterStartDate.value);
-    const endDate = new Date(filterEndDate.value);
-    const formattedStart = startDate.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long' });
-    const formattedEnd = endDate.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long' });
-    doc.setFontSize(14);
-    doc.text(`Mês ${formattedStart} - ${formattedEnd}`, 14, 50);
+        // Adiciona o nome da loja e motorista
+        const storeName = filterStore.value || 'Não especificada';
+        const driverName = filterDriver.value || 'Não especificado';
+        doc.setFontSize(14);
+        doc.text(`${storeName}`, 14, 30);
+        doc.text(`${driverName}`, 14, 40);
 
-    // Agrupamento por data
-    const expensesByDate = {};
-    filteredExpenses.forEach((expense) => {
-        const expenseDate = new Date(expense.date).toLocaleDateString('pt-BR');
-        if (!expensesByDate[expenseDate]) {
-            expensesByDate[expenseDate] = 0;
-        }
-        expensesByDate[expenseDate] += 1;
+        // Adiciona o intervalo de datas do filtro
+        const startDate = new Date(filterStartDate.value);
+        const endDate = new Date(filterEndDate.value);
+        const periodText = `${startDate.getDate()} - ${endDate.getDate()} de ${startDate.toLocaleString('default', { month: 'long' })} a ${endDate.toLocaleString('default', { month: 'long' })}`;
+        doc.text(`Período: ${periodText}`, 14, 50);
+
+        // Agrupando as saídas por data
+        const expensesByDate = {};
+        filteredExpenses.forEach((expense) => {
+            const expenseDate = new Date(expense.date);
+            const dateKey = `${expenseDate.getDate()}`;
+            if (!expensesByDate[dateKey]) {
+                expensesByDate[dateKey] = [];
+            }
+            expensesByDate[dateKey].push(expense);
+        });
+
+        let y = 60;
+        let totalValue = 0;
+        let totalEntries = 0;
+
+        // Adiciona as saídas agrupadas por data
+        Object.keys(expensesByDate).forEach(dateKey => {
+            const expensesOnDate = expensesByDate[dateKey];
+            const numberOfEntries = expensesOnDate.length;
+            totalValue += expensesOnDate.reduce((sum, expense) => sum + parseFloat(expense.received), 0);
+            totalEntries += numberOfEntries;
+            doc.text(`${dateKey} - ${numberOfEntries} Saída${numberOfEntries > 1 ? 's' : ''}`, 14, y);
+            y += 10;
+        });
+
+        // Adiciona o total de saídas e o valor total
+        doc.setFontSize(14);
+        y += 10; // Espaço antes do texto final
+        doc.text(`Total de Saídas: ${totalEntries} Saída${totalEntries > 1 ? 's' : ''}`, 14, y);
+        y += 10;
+        doc.text(`Valor Total: R$ ${totalValue.toFixed(2)}`, 14, y);
+
+        // Salva o PDF
+        doc.save('Fechamento_Tenda.pdf');
     });
 
-    // Preenchimento dos dias do período
-    let y = 60;
-    let totalSaidas = 0;
-    const currentDate = new Date(startDate);
-    const totalValue = filteredExpenses.reduce((sum, expense) => sum + parseFloat(expense.received), 0);
-
-    while (currentDate <= endDate) {
-        const dateKey = currentDate.toLocaleDateString('pt-BR');
-        const day = currentDate.getDate().toString().padStart(2, '0');
-        const isSunday = currentDate.getDay() === 0;
-
-        if (isSunday) {
-            doc.text(`${day} - Domingo`, 14, y);
-        } else if (expensesByDate[dateKey]) {
-            const numSaidas = expensesByDate[dateKey];
-            totalSaidas += numSaidas;
-            doc.text(`${day} - ${numSaidas} Saída${numSaidas > 1 ? 's' : ''}`, 14, y);
-        } else {
-            doc.text(`${day} -`, 14, y);
-        }
-
-        y += 10;
-        currentDate.setDate(currentDate.getDate() + 1);
-    }
-
-    // Adiciona totalizações ao final do PDF
-    y += 10; // Espaçamento antes do resumo
-    doc.setFontSize(14);
-    doc.text(`Total de Saídas: ${totalSaidas} Saída${totalSaidas > 1 ? 's' : ''}`, 14, y);
-    y += 10;
-    doc.text(`Valor Total: R$ ${totalValue.toFixed(2)}`, 14, y);
-
-    // Salva o PDF
-    doc.save('Fechamento_Tenda.pdf');
-});
     // Carregar todas as saídas ao iniciar
     loadExpenses();
 });
