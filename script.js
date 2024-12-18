@@ -132,10 +132,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Cabeçalho do PDF
         doc.setFontSize(18);
-        doc.text('Relatório de Saídas Filtradas', 14, 20);
+        doc.text('Fechamento Tenda', 14, 20);
 
         // Adiciona uma linha em branco
-        doc.setFontSize(12);
+        doc.setFontSize(14);
         doc.text('Motorista - Loja - Valor - Data', 14, 30);
 
         // Adiciona cada saída filtrada
