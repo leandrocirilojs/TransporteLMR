@@ -134,6 +134,21 @@ document.addEventListener('DOMContentLoaded', () => {
         doc.save('Fechamento_Tenda.pdf');
     });
 
+    // Filtros de busca (Iniciar os filtros e carregar saídas com base nos filtros)
+    const applyFilters = () => {
+        const filterStartDateValue = filterStartDate.value;
+        const filterEndDateValue = filterEndDate.value;
+        const filterDriverValue = filterDriver.value;
+        const filterStoreValue = filterStore.value;
+        loadExpenses(filterStartDateValue, filterEndDateValue, filterDriverValue, filterStoreValue);
+    };
+
+    // Chama os filtros ao mudar qualquer campo de filtro
+    filterStartDate.addEventListener('change', applyFilters);
+    filterEndDate.addEventListener('change', applyFilters);
+    filterDriver.addEventListener('change', applyFilters);
+    filterStore.addEventListener('change', applyFilters);
+
     // Carregar todas as saídas ao iniciar
     loadExpenses();
 });
