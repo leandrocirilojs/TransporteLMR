@@ -152,7 +152,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Adiciona o total ao PDF
         doc.setFontSize(14);
-        doc.text(`Total das Saídas: R$${totalValue.toFixed(2)}`, 14, y);
+        doc.text(`Valor Total: R$ ${totalValue.toFixed(2)}`, 14, y);
+        doc.text(`Quantida de Saídas: ${filteredExpenses.length}, 14, y);
+        
         
         // Salva o PDF
         doc.save('Relatorio_de_Saidas.pdf');
