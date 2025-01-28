@@ -130,36 +130,60 @@ document.addEventListener('DOMContentLoaded', () => {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
 
+    // Configurações iniciais
+    const pageHeight = doc.internal.pageSize.getHeight(); // Altura da página
+    const margin = 14; // Margem
+    let y = margin; // Posição vertical inicial
+    const lineHeight = 10; // Altura de cada linha
+    const maxLinesPerPage = Math.floor((pageHeight - margin * 2) / lineHeight); // Máximo de linhas por página
+
+    // Função para adicionar uma nova página
+    const addNewPage = () => {
+        doc.addPage();
+        y = margin; // Reinicia a posição Y para o topo da nova página
+    };
+
     // Cabeçalho do PDF
     doc.setFontSize(18);
-    doc.text('Fechamento Tenda', 14, 20);
+    doc.text('Fechamento Tenda', margin, y);
+    y += lineHeight * 2; // Espaço após o cabeçalho
 
     // Adiciona o intervalo de datas do filtro
     const startDate = filterStartDate.value || 'Não especificada';
     const endDate = filterEndDate.value || 'Não especificada';
     doc.setFontSize(14);
-    doc.text(`Período: ${startDate} a ${endDate}`, 14, 30); // Adiciona o período do filtro
+    doc.text(`Período: ${startDate} a ${endDate}`, margin, y);
+    y += lineHeight * 2; // Espaço após o período
 
     // Adiciona o título das colunas
-    doc.text('Motorista - Loja - Valor - Data', 14, 40);
+    doc.setFontSize(12);
+    doc.text('Motorista - Loja - Valor - Data', margin, y);
+    y += lineHeight; // Espaço após o título
 
     // Adiciona cada saída filtrada
-    let y = 50;
     let totalValue = 0; // Para somar os valores das saídas
 
-    filteredExpenses.forEach((expense) => {
+    filteredExpenses.forEach((expense, index) => {
+        // Verifica se é necessário adicionar uma nova página
+        if (y + lineHeight > pageHeight - margin) {
+            addNewPage();
+        }
+
         const expenseText = `${expense.driver} - ${expense.store} - R$ ${expense.received} - ${expense.date}`;
-        doc.text(expenseText, 14, y);
-        y += 10; // Move para a próxima linha
+        doc.text(expenseText, margin, y);
+        y += lineHeight; // Move para a próxima linha
         totalValue += parseFloat(expense.received); // Acumula o valor total
     });
 
     // Adiciona o total e a quantidade de saídas ao PDF
+    if (y + lineHeight * 3 > pageHeight - margin) {
+        addNewPage();
+    }
     doc.setFontSize(14);
-    y += 10; // Espaço antes do texto final
-    doc.text(`Quantidade de Saídas: ${filteredExpenses.length}`, 14, y); // Adiciona a quantidade de saídas
-    y += 10;
-    doc.text(`Valor Total: R$${totalValue.toFixed(2)}`, 14, y);
+    y += lineHeight; // Espaço antes do texto final
+    doc.text(`Quantidade de Saídas: ${filteredExpenses.length}`, margin, y);
+    y += lineHeight;
+    doc.text(`Valor Total: R$${totalValue.toFixed(2)}`, margin, y);
 
     // Salva o PDF
     doc.save('Relatorio_de_Saidas.pdf');
