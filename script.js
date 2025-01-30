@@ -194,23 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-//Enviar via zap
-document.getElementById('send-whatsapp').addEventListener('click', () => {
-    // Verifica se há saídas filtradas
-    if (filteredExpenses.length === 0) {
-        alert("Nenhuma saída filtrada para enviar.");
-        return;
-    }
 
-    // Gera a mensagem
-    const message = generateWhatsAppMessage();
-
-    // Cria a URL do WhatsApp
-    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
-
-    // Abre o WhatsApp em uma nova aba
-    window.open(whatsappUrl, '_blank');
-});
 
 const generateWhatsAppMessage = () => {
     const startDate = filterStartDate.value || 'Não especificada';
@@ -245,3 +229,22 @@ const generateWhatsAppMessage = () => {
 
     return message;
 };
+
+
+//Enviar via zap
+document.getElementById('send-whatsapp').addEventListener('click', () => {
+    // Verifica se há saídas filtradas
+    if (filteredExpenses.length === 0) {
+        alert("Nenhuma saída filtrada para enviar.");
+        return;
+    }
+
+    // Gera a mensagem
+    const message = generateWhatsAppMessage();
+
+    // Cria a URL do WhatsApp
+    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+
+    // Abre o WhatsApp em uma nova aba
+    window.open(whatsappUrl, '_blank');
+});
