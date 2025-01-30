@@ -356,3 +356,20 @@ h2 {
 .container {
     margin-top: 80px;
 }
+
+
+#send-whatsapp {
+       background-color: #25D366; /* Cor verde do WhatsApp */
+       color: white;
+       border: none;
+       padding: 10px 20px;
+       font-size: 16px;
+       border-radius: 5px;
+       cursor: pointer;
+       margin-top: 20px;
+       transition: background-color 0.3s;
+   }
+
+   #send-whatsapp:hover {
+       background-color: #128C7E; /* Cor mais escura ao passar o mouse */
+   }
