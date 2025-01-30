@@ -234,6 +234,7 @@ const generateWhatsAppMessage = () => {
 //Enviar via zap
 document.getElementById('send-whatsapp').addEventListener('click', () => {
     // Verifica se há saídas filtradas
+    alert('Erro aqui');
     if (filteredExpenses.length === 0) {
         alert("Nenhuma saída filtrada para enviar.");
         return;
