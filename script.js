@@ -191,3 +191,48 @@ document.addEventListener('DOMContentLoaded', () => {
     // Carregar todas as saídas ao iniciar
     loadExpenses();
 });
+
+
+
+//Enviar via zap
+const generateWhatsAppMessage = () => {
+       const startDate = filterStartDate.value || 'Não especificada';
+       const endDate = filterEndDate.value || 'Não especificada';
+       const driver = filterDriver.value || 'Não especificado';
+       const store = filterStore.value || 'Não especificada';
+
+       // Agrupa as saídas por data
+       const groupedExpenses = {};
+       filteredExpenses.forEach(expense => {
+           const date = expense.date;
+           if (!groupedExpenses[date]) {
+               groupedExpenses[date] = 0;
+           }
+           groupedExpenses[date]++;
+       });
+
+       // Cria a mensagem
+       let message = `*Fechamento Tenda*\n\n`;
+       message += `*${store}*\n\n`;
+       message += `*${driver}*\n\n`;
+       message += `*_${startDate} a ${endDate}_*\n\n`;
+
+       // Adiciona as saídas por dia
+       for (const [date, count] of Object.entries(groupedExpenses)) {
+           message += `${date}: ${count} Saída${count > 1 ? 's' : ''}\n`;
+       }
+
+       // Adiciona totais
+       message += `\n*Total de Saídas:* ${filteredExpenses.length} saída${filteredExpenses.length > 1 ? 's' : ''}\n`;
+       message += `*Valor total:* R$ ${totalAmount.textContent}\n`;
+
+       return encodeURIComponent(message); // Codifica a mensagem para uso na URL
+   };
+
+//chamado a mensagem
+
+document.getElementById('send-whatsapp').addEventListener('click', () => {
+       const message = generateWhatsAppMessage();
+       const whatsappUrl = `https://wa.me/?text=${message}`; // Gera o link do WhatsApp
+       window.open(whatsappUrl, '_blank'); // Abre em uma nova aba
+   });
