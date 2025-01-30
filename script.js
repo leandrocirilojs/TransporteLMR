@@ -232,7 +232,7 @@ const generateWhatsAppMessage = () => {
 //chamado a mensagem
 
 document.getElementById('send-whatsapp').addEventListener('click', () => {
-    alert();
+    
        const message = generateWhatsAppMessage();
        const whatsappUrl = `https://wa.me/?text=${message}`; // Gera o link do WhatsApp
        window.open(whatsappUrl, '_blank'); // Abre em uma nova aba
