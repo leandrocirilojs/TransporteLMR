@@ -365,11 +365,29 @@ h2 {
        padding: 10px 20px;
        font-size: 16px;
        border-radius: 5px;
+       background-color: #25D366; /* Cor verde do WhatsApp */
+       
        cursor: pointer;
        margin-top: 20px;
        transition: background-color 0.3s;
+       
    }
 
    #send-whatsapp:hover {
        background-color: #128C7E; /* Cor mais escura ao passar o mouse */
    }
+
+
+#download-pdf{
+    background-color: #199c9c; /* Cor verde do WhatsApp */
+       color: white;
+       border: none;
+       padding: 10px 20px;
+       font-size: 16px;
+       border-radius: 5px;
+       cursor: pointer;
+       margin-top: 20px;
+       transition: background-color 0.3s;
+       
+}
+
