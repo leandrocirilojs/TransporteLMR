@@ -245,7 +245,7 @@ document.getElementById('send-whatsapp').addEventListener('click', () => {
     const message = generateWhatsAppMessage();
 
     // Cria a URL do WhatsApp
-    const phoneNumber = "SEU_NUMERO_DE_TELEFONE"; // Substitua pelo número de telefone desejado
+    const phoneNumber = "55981335733"; // Substitua pelo número de telefone desejado
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
     // Abre o WhatsApp em uma nova aba
