@@ -193,14 +193,17 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-
-
-
 const generateWhatsAppMessage = () => {
-    const startDate = filterStartDate.value || 'Não especificada';
-    const endDate = filterEndDate.value || 'Não especificada';
-    const driver = filterDriver.value || 'Não especificado';
-    const store = filterStore.value || 'Não especificada';
+    const startDate = document.getElementById('filter-start-date').value || 'Não especificada';
+    const endDate = document.getElementById('filter-end-date').value || 'Não especificada';
+    const driver = document.getElementById('filter-driver').value || 'Não especificado';
+    const store = document.getElementById('filter-store').value || 'Não especificada';
+
+    // Recalcula o valor total das saídas filtradas
+    let totalValue = 0;
+    filteredExpenses.forEach(expense => {
+        totalValue += parseFloat(expense.received);
+    });
 
     // Agrupa as saídas por data
     const groupedExpenses = {};
@@ -225,16 +228,14 @@ const generateWhatsAppMessage = () => {
 
     // Adiciona totais
     message += `\n*Total de Saídas:* ${filteredExpenses.length} saída${filteredExpenses.length > 1 ? 's' : ''}\n`;
-    message += `*Valor total:* R$ ${totalAmount.textContent}\n`;
+    message += `*Valor total:* R$ ${totalValue.toFixed(2)}\n`;
 
     return message;
 };
 
-
-//Enviar via zap
+// Enviar via WhatsApp
 document.getElementById('send-whatsapp').addEventListener('click', () => {
     // Verifica se há saídas filtradas
-    alert('Erro aqui');
     if (filteredExpenses.length === 0) {
         alert("Nenhuma saída filtrada para enviar.");
         return;
@@ -244,8 +245,11 @@ document.getElementById('send-whatsapp').addEventListener('click', () => {
     const message = generateWhatsAppMessage();
 
     // Cria a URL do WhatsApp
-    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+    const phoneNumber = "SEU_NUMERO_DE_TELEFONE"; // Substitua pelo número de telefone desejado
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
     // Abre o WhatsApp em uma nova aba
-    window.location.href(whatsappUrl, '_blank');
+    window.open(whatsappUrl, '_blank');
 });
+
+
