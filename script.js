@@ -247,5 +247,5 @@ document.getElementById('send-whatsapp').addEventListener('click', () => {
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
 
     // Abre o WhatsApp em uma nova aba
-    window.open(whatsappUrl, '_blank');
+    window.location.href(whatsappUrl, '_blank');
 });
