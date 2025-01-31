@@ -188,9 +188,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Salva o PDF
     doc.save('Relatorio_de_Saidas.pdf');
 });
-    // Carregar todas as saídas ao iniciar
-    loadExpenses();
-});
 
 
 const generateWhatsAppMessage = () => {
@@ -250,6 +247,20 @@ document.getElementById('send-whatsapp').addEventListener('click', () => {
 
     // Abre o WhatsApp em uma nova aba
     window.open(whatsappUrl, '_blank');
+});
+
+
+
+
+
+
+
+
+
+
+    
+    // Carregar todas as saídas ao iniciar
+    loadExpenses();
 });
 
 
