@@ -252,30 +252,37 @@ document.getElementById('send-whatsapp').addEventListener('click', () => {
 
 
 //excel
+
 function exportToExcel() {
+    // Obtenha os dados das saídas do localStorage
     const expenses = JSON.parse(localStorage.getItem('expenses')) || [];
+
+    // Crie um array com os dados formatados
     const data = expenses.map(expense => [
-        expense.driver,
-        expense.store,
-        expense.amount,
-        expense.received,
-        expense.profit,
-        expense.date
+        expense.driver,    // Motorista
+        expense.store,     // Loja
+        expense.amount,    // Valor Pago
+        expense.received,  // Valor Recebido
+        expense.profit,    // Lucro
+        expense.date       // Data
     ]);
 
+    // Crie uma planilha (worksheet) com os dados
     const ws = XLSX.utils.aoa_to_sheet([
-        ['Motorista', 'Loja', 'Valor Pago', 'Valor Recebido', 'Lucro', 'Data'],
-        ...data
+        ['Motorista', 'Loja', 'Valor Pago', 'Valor Recebido', 'Lucro', 'Data'], // Cabeçalho
+        ...data // Dados
     ]);
 
+    // Crie um livro (workbook) e adicione a planilha
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Saídas');
+
+    // Exporte o arquivo Excel
     XLSX.writeFile(wb, 'Relatorio_Saidas.xlsx');
 }
 
+// Adicione um evento ao botão de exportação
 document.getElementById('export-excel').addEventListener('click', exportToExcel);
-
-
 
 
 
