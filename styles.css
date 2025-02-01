@@ -410,7 +410,7 @@ h2 {
 
 /* Estilo para os botões */
 #send-whatsapp, #download-pdf, #export-excel {
-    padding: 6px 14px;
+    padding: 8px 16px;
     font-size: 14px;
     border: none;
     border-radius: 25px;
@@ -418,7 +418,7 @@ h2 {
     transition: background-color 0.3s, transform 0.3s;
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
 }
 #export-excel {
     background-color: #1d6f42; /* Verde escuro */
