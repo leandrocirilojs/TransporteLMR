@@ -409,7 +409,7 @@ h2 {
 }
 
 /* Estilo para os botões */
-#send-whatsapp, #download-pdf {
+#send-whatsapp, #download-pdf, #export-excel {
     padding: 10px 20px;
     font-size: 16px;
     border: none;
@@ -419,6 +419,18 @@ h2 {
     display: flex;
     align-items: center;
     gap: 6px;
+}
+#export-excel {
+    background-color: #1d6f42; /* Verde escuro */
+    
+}
+
+#export-excel:hover {
+    background-color: #155734; /* Verde mais escuro ao passar o mouse */
+}
+
+#export-excel i {
+    font-size: 18px;
 }
 
 #send-whatsapp {
