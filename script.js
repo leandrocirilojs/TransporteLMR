@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
     doc.save('Relatorio_de_Saidas.pdf');
 });
 
-
+//whats
 const generateWhatsAppMessage = () => {
     const startDate = document.getElementById('filter-start-date').value || 'Não especificada';
     const endDate = document.getElementById('filter-end-date').value || 'Não especificada';
@@ -251,8 +251,29 @@ document.getElementById('send-whatsapp').addEventListener('click', () => {
 
 
 
+//excel
+function exportToExcel() {
+    const expenses = JSON.parse(localStorage.getItem('expenses')) || [];
+    const data = expenses.map(expense => [
+        expense.driver,
+        expense.store,
+        expense.amount,
+        expense.received,
+        expense.profit,
+        expense.date
+    ]);
 
+    const ws = XLSX.utils.aoa_to_sheet([
+        ['Motorista', 'Loja', 'Valor Pago', 'Valor Recebido', 'Lucro', 'Data'],
+        ...data
+    ]);
 
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Saídas');
+    XLSX.writeFile(wb, 'Relatorio_Saidas.xlsx');
+}
+
+document.getElementById('export-excel').addEventListener('click', exportToExcel);
 
 
 
