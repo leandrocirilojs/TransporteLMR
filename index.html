@@ -62,7 +62,10 @@
 
     <div class="expense-list">
         <div class="filters">
-            <button id="toggle-filters"><i class="fa-solid fa-filter" style="color: #ffffff;"></i> Exibir Filtros</button>
+            <button id="toggle-filters">
+    <i class="fa-solid fa-filter" style="color: #ffffff;"></i>
+    <span>Exibir Filtros</span> <!-- Texto dentro de um span -->
+</button>
             <div id="filter-section" style="display: none;">
                 
                 <input type="date" id="filter-start-date" placeholder="Data Início">
@@ -124,10 +127,13 @@
     });
 
     toggleFiltersButton.addEventListener('click', () => {
-        const isHidden = filterSection.style.display === 'none';
-        filterSection.style.display = isHidden ? 'block' : 'none';
-        toggleFiltersButton.textContent = isHidden ? 'Ocultar Filtros' : 'Exibir Filtros';
-    });
+    const isHidden = filterSection.style.display === 'none';
+    filterSection.style.display = isHidden ? 'block' : 'none';
+    
+    // Altera apenas o texto dentro do <span>
+    const span = toggleFiltersButton.querySelector('span');
+    span.textContent = isHidden ? 'Ocultar Filtros' : 'Exibir Filtros';
+});
 </script>
 
 <script src="script.js"></script>
