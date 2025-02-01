@@ -254,11 +254,8 @@ document.getElementById('send-whatsapp').addEventListener('click', () => {
 //excel
 
 function exportToExcel() {
-    // Obtenha os dados das saídas do localStorage
-    const expenses = JSON.parse(localStorage.getItem('expenses')) || [];
-
-    // Crie um array com os dados formatados
-    const data = expenses.map(expense => [
+    // Use a variável filteredExpenses (já filtrada)
+    const data = filteredExpenses.map(expense => [
         expense.driver,    // Motorista
         expense.store,     // Loja
         expense.amount,    // Valor Pago
@@ -283,8 +280,6 @@ function exportToExcel() {
 
 // Adicione um evento ao botão de exportação
 document.getElementById('export-excel').addEventListener('click', exportToExcel);
-
-
 
     
     // Carregar todas as saídas ao iniciar
