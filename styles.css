@@ -358,14 +358,16 @@ h2 {
 }
 
 
+
+/*
 #send-whatsapp {
-       background-color: #25D366; /* Cor verde do WhatsApp */
+       background-color: #25D366; /* Cor verde do WhatsApp 
        color: white;
        border: none;
        padding: 10px 20px;
        font-size: 16px;
        border-radius: 5px;
-       background-color: #25D366; /* Cor verde do WhatsApp */
+       background-color: #25D366; /* Cor verde do WhatsApp 
        
        cursor: pointer;
        margin-top: 20px;
@@ -374,12 +376,12 @@ h2 {
    }
 
    #send-whatsapp:hover {
-       background-color: #128C7E; /* Cor mais escura ao passar o mouse */
+       background-color: #128C7E; /* Cor mais escura ao passar o mouse 
    }
 
 
 #download-pdf{
-    background-color: #199c9c; /* Cor verde do WhatsApp */
+    background-color: #199c9c; /* Cor verde do WhatsApp 
        color: white;
        border: none;
        padding: 10px 20px;
@@ -390,4 +392,54 @@ h2 {
        transition: background-color 0.3s;
        
 }
+*/
+/* Estilo para os botões de ação fixos */
+.action-buttons {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    background-color: rgba(255, 255, 255, 0.9); /* Fundo semi-transparente */
+    padding: 10px 20px;
+    border-radius: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para destacar */
+    z-index: 1000; /* Garante que os botões fiquem acima de outros elementos */
+}
 
+/* Estilo para os botões */
+#send-whatsapp, #download-pdf {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#send-whatsapp {
+    background-color: #25D366; /* Verde do WhatsApp */
+    color: white;
+}
+
+#send-whatsapp:hover {
+    background-color: #128C7E; /* Verde mais escuro ao passar o mouse */
+}
+
+#download-pdf {
+    background-color: #dc3545; /* Vermelho para o botão PDF */
+    color: white;
+}
+
+#download-pdf:hover {
+    background-color: #c82333; /* Vermelho mais escuro ao passar o mouse */
+}
+
+/* Efeito de hover nos botões */
+#send-whatsapp:hover, #download-pdf:hover {
+    transform: scale(1.05); /* Aumenta levemente o botão ao passar o mouse */
+}
