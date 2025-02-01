@@ -253,7 +253,7 @@ document.getElementById('send-whatsapp').addEventListener('click', () => {
 
 //excel
 
-function exportToExcel() {
+
 function exportToExcel() {
     // Use a variável filteredExpenses (já filtrada)
     const data = filteredExpenses.map(expense => [
@@ -291,6 +291,8 @@ function exportToExcel() {
 // Adicione um evento ao botão de exportação
 document.getElementById('export-excel').addEventListener('click', exportToExcel);
     // Carregar todas as saídas ao iniciar
+  
+    
     loadExpenses();
 });
 
