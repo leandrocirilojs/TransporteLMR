@@ -254,6 +254,7 @@ document.getElementById('send-whatsapp').addEventListener('click', () => {
 //excel
 
 function exportToExcel() {
+function exportToExcel() {
     // Use a variável filteredExpenses (já filtrada)
     const data = filteredExpenses.map(expense => [
         expense.driver,    // Motorista
@@ -263,6 +264,15 @@ function exportToExcel() {
         expense.profit,    // Lucro
         expense.date       // Data
     ]);
+
+    // Calcular o total das saídas e o valor total
+    const totalSaidas = filteredExpenses.length;
+    const valorTotal = filteredExpenses.reduce((total, expense) => total + parseFloat(expense.received), 0);
+
+    // Adicionar uma linha de total ao final dos dados
+    data.push([]); // Linha em branco para separação
+    data.push(['Total das Saídas', '', '', '', '', totalSaidas]);
+    data.push(['Valor Total', '', '', '', '', valorTotal.toFixed(2)]);
 
     // Crie uma planilha (worksheet) com os dados
     const ws = XLSX.utils.aoa_to_sheet([
@@ -280,8 +290,6 @@ function exportToExcel() {
 
 // Adicione um evento ao botão de exportação
 document.getElementById('export-excel').addEventListener('click', exportToExcel);
-
-    
     // Carregar todas as saídas ao iniciar
     loadExpenses();
 });
