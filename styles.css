@@ -411,7 +411,7 @@ h2 {
 /* Estilo para os botões */
 #send-whatsapp, #download-pdf, #export-excel {
     padding: 6px 14px;
-    font-size: 12px;
+    font-size: 14px;
     border: none;
     border-radius: 25px;
     cursor: pointer;
