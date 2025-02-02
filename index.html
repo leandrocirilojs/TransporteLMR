@@ -25,33 +25,22 @@
         <span class="bar"></span>
     </div>
 
-
-
-
-    
-    <nav class="nav" id="nav-links">
-        <header class="whatsapp-header">
-    <div class="whatsapp-logo">
-        
-    
-</header>
-
-<div class="whatsapp-container futuristic" id="whatsapp-scheduler-section">
-
-    <input type="text" id="whatsapp-number-input" placeholder="Número com DDD" required>
+<div class="whatsapp-scheduler-container">
+  
+    <input type="text" id="whatsapp-scheduler-number" class="whatsapp-scheduler-input" placeholder="Número com DDD" required>
 
     <!-- Mensagens predefinidas -->
-    <div class="whatsapp-message-options">
-        <button class="whatsapp-message-option" data-message="Oi, tudo bem?">Oi, tudo bem?</button>
-        <button class="whatsapp-message-option" data-message="Qual é o status da entrega?">Qual é o status da entrega?</button>
-        <button class="whatsapp-message-option" data-message="Tem alguma novidade sobre a carga?">Tem alguma novidade sobre a carga?</button>
+    <div class="whatsapp-scheduler-message-options">
+        <button class="whatsapp-scheduler-message-button" data-message="Oi, tudo bem?">Oi, tudo bem?</button>
+        <button class="whatsapp-scheduler-message-button" data-message="Qual é o status da entrega?">Qual é o status da entrega?</button>
+        <button class="whatsapp-scheduler-message-button" data-message="Tem alguma novidade sobre a carga?">Tem alguma novidade sobre a carga?</button>
     </div>
 
     <!-- Campo de mensagem -->
-    <textarea id="whatsapp-message-input" placeholder="Digite a mensagem..." readonly></textarea>
+    <textarea id="whatsapp-scheduler-message" class="whatsapp-scheduler-textarea" placeholder="Digite a mensagem..." readonly></textarea>
 
     <!-- Botão de Enviar -->
-    <button id="whatsapp-send-button">Enviar WhatsApp</button>
+    <button id="whatsapp-scheduler-send" class="whatsapp-scheduler-button">Enviar WhatsApp</button>
 </div>
 
 
