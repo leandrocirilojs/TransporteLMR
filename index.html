@@ -25,10 +25,48 @@
         <span class="bar"></span>
     </div>
     <nav class="nav" id="nav-links">
+        <header class="whatsapp-header">
+    <div class="whatsapp-logo">
+        <h1><i class="fa-solid fa-dolly" style="color:#ba7dff ;"></i> MRL Log</h1>
+    </div>
+    <div class="whatsapp-menu-toggle" id="whatsapp-mobile-menu">
+        <span class="whatsapp-bar"></span>
+        <span class="whatsapp-bar"></span>
+        <span class="whatsapp-bar"></span>
+    </div>
+    <nav class="whatsapp-nav" id="whatsapp-nav-links">
         <ul>
             <li><a href="https://leandrocirilojs.github.io/TransporteLMR/site.html#home">Inicio</a></li>
-            
+            <li><a href="#whatsapp-scheduler-section">Agendar WhatsApp</a></li>
         </ul>
+    </nav>
+</header>
+
+<div class="whatsapp-container futuristic" id="whatsapp-scheduler-section">
+    <h1>Enviar Mensagens pelo WhatsApp</h1>
+
+    <!-- Campo de número -->
+    <label for="whatsapp-number-input">Número do WhatsApp:</label>
+    <input type="text" id="whatsapp-number-input" placeholder="Número com DDD" required>
+
+    <!-- Mensagens predefinidas -->
+    <div class="whatsapp-message-options">
+        <button class="whatsapp-message-option" data-message="Oi, tudo bem?">Oi, tudo bem?</button>
+        <button class="whatsapp-message-option" data-message="Qual é o status da entrega?">Qual é o status da entrega?</button>
+        <button class="whatsapp-message-option" data-message="Tem alguma novidade sobre a carga?">Tem alguma novidade sobre a carga?</button>
+    </div>
+
+    <!-- Campo de mensagem -->
+    <textarea id="whatsapp-message-input" placeholder="Digite a mensagem..." readonly></textarea>
+
+    <!-- Botão de Enviar -->
+    <button id="whatsapp-send-button">Enviar WhatsApp</button>
+</div>
+
+
+
+
+        
     </nav>
 </header>
 
