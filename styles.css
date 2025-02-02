@@ -469,7 +469,8 @@ h2 {
 
 
 /* Estilos gerais */
-.whatsapp-container.futuristic {
+/* Estilização da seção de envio do WhatsApp */
+.whatsapp-scheduler-container {
     margin: 50px auto;
     background: linear-gradient(135deg, #7e00ff, #00b5f4);
     border-radius: 20px;
@@ -480,21 +481,22 @@ h2 {
     text-align: center;
 }
 
-h1 {
-    font-size: 2rem;
-    margin-bottom: 30px;
+.whatsapp-scheduler-title {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
     font-weight: 700;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
 }
 
-label {
+.whatsapp-scheduler-label {
     font-size: 1rem;
     margin-bottom: 10px;
+    display: block;
     font-weight: 600;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
 }
 
-input, textarea, button {
+.whatsapp-scheduler-input,
+.whatsapp-scheduler-textarea,
+.whatsapp-scheduler-button {
     width: 100%;
     padding: 12px;
     margin: 10px 0;
@@ -506,41 +508,27 @@ input, textarea, button {
     transition: all 0.3s ease;
 }
 
-input:focus, textarea:focus, button:focus {
+.whatsapp-scheduler-input:focus,
+.whatsapp-scheduler-textarea:focus {
     outline: none;
     box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
 }
 
-input::placeholder, textarea::placeholder {
-    color: #9b9b9b;
-}
-
-textarea {
-    height: 150px;
-    font-family: 'Courier New', monospace;
+.whatsapp-scheduler-textarea {
+    height: 120px;
     resize: none;
     background-color: #333;
+    font-family: 'Courier New', monospace;
 }
 
-button {
-    background: linear-gradient(45deg, #ff004f, #7e00ff);
-    cursor: pointer;
-    font-weight: 700;
-    transition: background 0.3s ease;
-}
-
-button:hover {
-    background: linear-gradient(45deg, #ff004f, #ffb400);
-}
-
-.whatsapp-message-options {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+.whatsapp-scheduler-message-options {
+    display: flex;
+    justify-content: center;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
-.whatsapp-message-option {
+.whatsapp-scheduler-message-button {
     padding: 10px;
     background-color: #444;
     color: #fff;
@@ -550,23 +538,17 @@ button:hover {
     transition: transform 0.2s ease, background-color 0.3s ease;
 }
 
-.whatsapp-message-option:hover {
+.whatsapp-scheduler-message-button:hover {
     background-color: #4f4f4f;
     transform: scale(1.05);
 }
 
-#whatsapp-send-button {
+.whatsapp-scheduler-button {
     background-color: #00e676;
+    cursor: pointer;
+    font-weight: 700;
 }
 
-#whatsapp-send-button:hover {
+.whatsapp-scheduler-button:hover {
     background-color: #00c853;
-}
-
-#whatsapp-number-input {
-    background-color: #333;
-}
-
-#whatsapp-number-input:focus {
-    box-shadow: 0 0 8px rgba(0, 255, 255, 0.8);
 }
