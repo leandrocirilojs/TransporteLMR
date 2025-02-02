@@ -471,6 +471,7 @@ h2 {
 /* Estilos gerais */
 /* Estilização da seção de envio do WhatsApp */
 .whatsapp-scheduler-container {
+    z-index: 9999;
     margin: 10px auto;
     background: linear-gradient(135deg, #7e00ff, #00b5f4);
     border-radius: 20px;
