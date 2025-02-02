@@ -405,7 +405,7 @@ h2 {
     padding: 6px 14px;
     border-radius: 50px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para destacar */
-    z-index: 1000; /* Garante que os botões fiquem acima de outros elementos */
+    z-index: 9998; /* Garante que os botões fiquem acima de outros elementos */
 }
 
 /* Estilo para os botões */
