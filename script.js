@@ -302,15 +302,16 @@ document.getElementById('export-excel').addEventListener('click', exportToExcel)
 // whats
 
 // Variáveis de elementos com novos IDs
-const whatsappSendButton = document.getElementById('whatsapp-send-button');
-const whatsappMessageInput = document.getElementById('whatsapp-message-input');
-const whatsappNumberInput = document.getElementById('whatsapp-number-input');
-const messageOptions = document.querySelectorAll('.whatsapp-message-option');
+// Seleciona os elementos sem conflitos
+const whatsappSchedulerSend = document.getElementById('whatsapp-scheduler-send');
+const whatsappSchedulerMessage = document.getElementById('whatsapp-scheduler-message');
+const whatsappSchedulerNumber = document.getElementById('whatsapp-scheduler-number');
+const whatsappSchedulerButtons = document.querySelectorAll('.whatsapp-scheduler-message-button');
 
-// Função para enviar a mensagem via WhatsApp
-whatsappSendButton.addEventListener('click', function () {
-    const phoneNumber = whatsappNumberInput.value.trim();
-    const message = whatsappMessageInput.value.trim();
+// Enviar mensagem para o WhatsApp
+whatsappSchedulerSend.addEventListener('click', function () {
+    const phoneNumber = whatsappSchedulerNumber.value.trim();
+    const message = whatsappSchedulerMessage.value.trim();
 
     if (phoneNumber === "") {
         alert("Por favor, insira o número de WhatsApp.");
@@ -322,17 +323,17 @@ whatsappSendButton.addEventListener('click', function () {
         return;
     }
 
-    const formattedPhoneNumber = phoneNumber.replace(/\D/g, ""); // Remove qualquer não-número do telefone
+    const formattedPhoneNumber = phoneNumber.replace(/\D/g, ""); // Remove caracteres não numéricos
     const whatsappUrl = `https://wa.me/${formattedPhoneNumber}?text=${encodeURIComponent(message)}`;
 
     // Redireciona para o WhatsApp
     window.open(whatsappUrl, '_blank');
 });
 
-// Atribuindo mensagens predefinidas aos botões
-messageOptions.forEach(function (button) {
+// Configura mensagens predefinidas ao clicar nos botões
+whatsappSchedulerButtons.forEach(function (button) {
     button.addEventListener('click', function () {
         const message = button.getAttribute('data-message');
-        whatsappMessageInput.value = message;
+        whatsappSchedulerMessage.value = message;
     });
 });
