@@ -297,3 +297,42 @@ document.getElementById('export-excel').addEventListener('click', exportToExcel)
 });
 
 
+
+
+// whats
+
+// Variáveis de elementos com novos IDs
+const whatsappSendButton = document.getElementById('whatsapp-send-button');
+const whatsappMessageInput = document.getElementById('whatsapp-message-input');
+const whatsappNumberInput = document.getElementById('whatsapp-number-input');
+const messageOptions = document.querySelectorAll('.whatsapp-message-option');
+
+// Função para enviar a mensagem via WhatsApp
+whatsappSendButton.addEventListener('click', function () {
+    const phoneNumber = whatsappNumberInput.value.trim();
+    const message = whatsappMessageInput.value.trim();
+
+    if (phoneNumber === "") {
+        alert("Por favor, insira o número de WhatsApp.");
+        return;
+    }
+
+    if (message === "") {
+        alert("Por favor, selecione ou digite uma mensagem.");
+        return;
+    }
+
+    const formattedPhoneNumber = phoneNumber.replace(/\D/g, ""); // Remove qualquer não-número do telefone
+    const whatsappUrl = `https://wa.me/${formattedPhoneNumber}?text=${encodeURIComponent(message)}`;
+
+    // Redireciona para o WhatsApp
+    window.open(whatsappUrl, '_blank');
+});
+
+// Atribuindo mensagens predefinidas aos botões
+messageOptions.forEach(function (button) {
+    button.addEventListener('click', function () {
+        const message = button.getAttribute('data-message');
+        whatsappMessageInput.value = message;
+    });
+});
