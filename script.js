@@ -146,23 +146,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Cabeçalho do PDF
     doc.setFontSize(18);
 
-//testando
- pdf.autoTable({
-    head: [cabecalho], // Cabeçalho da tabela
-    body: dados, // Dados da tabela
-    startY: 30, // Posição inicial da tabela
-    theme: 'striped', // Estilo da tabela
-    styles: {
-      fontSize: 10, // Tamanho da fonte
-      cellPadding: 3, // Espaçamento interno das células
-    },
-  });
-
-
-
-
-
-        
     doc.text('Fechamento Tenda', margin, y);
     y += lineHeight * 2; // Espaço após o cabeçalho
 
