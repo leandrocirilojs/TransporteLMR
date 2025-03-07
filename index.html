@@ -15,7 +15,31 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
       
+<style>
+    .input-container {
+  position: relative;
+  width: 300px; /* Ajuste conforme necessário */
+}
 
+.input-container input {
+  width: 100%;
+  padding-right: 40px; /* Espaço para o ícone */
+  box-sizing: border-box;
+}
+
+.input-container i {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #888;
+}
+
+.input-container i:hover {
+  color: #333;
+}
+</style>
     
 </head>
 <body>
