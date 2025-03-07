@@ -39,13 +39,12 @@
         </header>
 
 <div class="whatsapp-scheduler-container">
-  
+  <div class="input-container">
     <input type="text" id="whatsapp-scheduler-number" class="whatsapp-scheduler-input" placeholder="Número com DDD">
-
-    <!-- Mensagens predefinidas -->
+<button onclick="iniciarReconhecimento()">Falar</button>
+  </div>  <!-- Mensagens predefinidas -->
     <div class="whatsapp-scheduler-message-options">
-          <button onclick="iniciarReconhecimento()">Falar</button>
-        <button class="whatsapp-scheduler-message-button" data-message="Oi,tudo bem? Sou entregador do Tenda">Oi. Entrega Tenda</button>
+            <button class="whatsapp-scheduler-message-button" data-message="Oi,tudo bem? Sou entregador do Tenda">Oi. Entrega Tenda</button>
         <button class="whatsapp-scheduler-message-button" data-message="Boa tarde. Poderia me enviar sua localização?">Localização</button>
         
         <button class="whatsapp-scheduler-message-button" data-message="Boa tarde. Estou a caminho da sua entrega. Tenda Delivery.">A caminho</button>
