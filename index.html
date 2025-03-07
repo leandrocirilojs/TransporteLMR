@@ -44,6 +44,7 @@
 
     <!-- Mensagens predefinidas -->
     <div class="whatsapp-scheduler-message-options">
+          <button onclick="lerTexto()">Ouvir texto</button>
         <button class="whatsapp-scheduler-message-button" data-message="Oi,tudo bem? Sou entregador do Tenda">Oi. Entrega Tenda</button>
         <button class="whatsapp-scheduler-message-button" data-message="Boa tarde. Poderia me enviar sua localização?">Localização</button>
         
@@ -170,6 +171,22 @@
     const span = toggleFiltersButton.querySelector('span');
     span.textContent = isHidden ? 'Ocultar Filtros' : 'Exibir Filtros';
 });
+
+
+
+    //falar e transcrever 
+    function iniciarReconhecimento() {
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'pt-BR'; // Define o idioma para português do Brasil
+      recognition.onresult = function(event) {
+        const transcricao = event.results[0][0].transcript;
+        document.getElementById('whatsapp-scheduler-number').textContent = transcricao;
+      };
+      recognition.start(); // Inicia o reconhecimento de fala
+    }
+
+    
+    
 </script>
 
 <script src="script.js"></script>
