@@ -18,7 +18,7 @@
 <style>
     .input-container {
   position: relative;
-  width: 300px; /* Ajuste conforme necessário */
+  width: 100%; /* Ajuste conforme necessário */
 }
 
 .input-container input {
@@ -63,10 +63,20 @@
         </header>
 
 <div class="whatsapp-scheduler-container">
-  <div class="input-container">
+ 
+    
+    
+    
+    <div class="input-container">
     <input type="text" id="whatsapp-scheduler-number" class="whatsapp-scheduler-input" placeholder="Número com DDD">
-<button onclick="iniciarReconhecimento()">Falar</button>
-  </div>  <!-- Mensagens predefinidas -->
+ <i class="fas fa-microphone" onclick="iniciarReconhecimento()"></i>
+    </div> 
+    
+    
+    
+    
+    
+    <!-- Mensagens predefinidas -->
     <div class="whatsapp-scheduler-message-options">
             <button class="whatsapp-scheduler-message-button" data-message="Oi,tudo bem? Sou entregador do Tenda">Oi. Entrega Tenda</button>
         <button class="whatsapp-scheduler-message-button" data-message="Boa tarde. Poderia me enviar sua localização?">Localização</button>
