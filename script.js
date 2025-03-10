@@ -220,18 +220,6 @@ const generateWhatsAppMessage = () => {
     message += `*_${startDate} a ${endDate}_*\n\n`;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
     
     // Adiciona as saídas por dia
     for (const [date, count] of Object.entries(groupedExpenses)) {
