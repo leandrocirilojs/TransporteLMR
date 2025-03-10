@@ -225,7 +225,7 @@ const generateWhatsAppMessage = () => {
     
     // Adiciona as saídas por dia
     for (const [date, count] of Object.entries(groupedExpenses)) {
-        message += `${dia} / ${mes} ${count} Saída${count > 1 ? 's' : ''}\n`;
+        message += `${date} ${count} Saída${count > 1 ? 's' : ''}\n`;
     }
 
     // Adiciona totais
