@@ -207,8 +207,6 @@ const generateWhatsAppMessage = () => {
     const groupedExpenses = {};
     filteredExpenses.forEach(expense => {
         const date = expense.date;
-        const dia = date.getDate();
-        const mes = date.getMonth();
         if (!groupedExpenses[date]) {
             groupedExpenses[date] = 0;
         }
@@ -221,11 +219,9 @@ const generateWhatsAppMessage = () => {
     message += `*${driver}*\n\n`;
     message += `*_${startDate} a ${endDate}_*\n\n`;
 
-// retornar date caso não funcione 
-    
     // Adiciona as saídas por dia
     for (const [date, count] of Object.entries(groupedExpenses)) {
-        message += `${date} ${count} Saída${count > 1 ? 's' : ''}\n`;
+        message += `${date}: ${count} Saída${count > 1 ? 's' : ''}\n`;
     }
 
     // Adiciona totais
