@@ -206,7 +206,7 @@ const generateWhatsAppMessage = () => {
     // Agrupa as saídas por data
     const groupedExpenses = {};
     filteredExpenses.forEach(expense => {
-        const date = expense.date;
+        const date = expense.date.getDate();
         if (!groupedExpenses[date]) {
             groupedExpenses[date] = 0;
         }
@@ -223,7 +223,7 @@ const generateWhatsAppMessage = () => {
     
     // Adiciona as saídas por dia
     for (const [date, count] of Object.entries(groupedExpenses)) {
-        message += `${date.getDate()}: ${count} Saída${count > 1 ? 's' : ''}\n`;
+        message += `${date}: ${count} Saída${count > 1 ? 's' : ''}\n`;
     }
 
     // Adiciona totais
