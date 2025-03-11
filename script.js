@@ -219,24 +219,9 @@ const generateWhatsAppMessage = () => {
     message += `*${driver}*\n\n`;
     message += `*_${startDate} a ${endDate}_*\n\n`;
 
-    // Adiciona as saídas por dia (formato dia/mês)
+    // Adiciona as saídas por dia
     for (const [date, count] of Object.entries(groupedExpenses)) {
-        // Converte a string de data para um objeto Date
-        const data = new Date(date);
-
-        // Extrai o dia e o mês
-        const dia = data.getDate(); // Dia do mês (1-31)
-        const mes = data.getMonth() + 1; // Mês (1-12), pois getMonth() retorna 0-11
-
-        // Formata o dia e o mês para garantir dois dígitos
-      //  const diaFormatado = dia < 10 ? `0${dia}` : dia;
-     //   const mesFormatado = mes < 10 ? `0${mes}` : mes;
-
-        // Cria a string no formato "dia/mês"
-        const diaMes = `${dia}/${mes}`;
-
-        // Adiciona ao message
-        message += `${diaMes}: ${count} Saída${count > 1 ? 's' : ''}\n`;
+        message += `${date}: ${count} Saída${count > 1 ? 's' : ''}\n`;
     }
 
     // Adiciona totais
@@ -264,10 +249,7 @@ document.getElementById('send-whatsapp').addEventListener('click', () => {
     // Abre o WhatsApp em uma nova aba
     window.open(whatsappUrl, '_blank');
 });
-    
-// Enviar via WhatsApp
 
-    
 
 
 //excel
