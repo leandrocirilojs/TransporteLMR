@@ -224,32 +224,6 @@ const generateWhatsAppMessage = () => {
         message += `${date}: ${count} Saída${count > 1 ? 's' : ''}\n`;
     }
 
-
-
-// Converte a string de data para um objeto Date
-        const data = new Date(date);
-
-        // Extrai o dia e o mês
-        const dia = data.getDate(); // Dia do mês (1-31)
-        const mes = data.getMonth() + 1; // Mês (1-12), pois getMonth() retorna 0-11
-
-        // Formata o dia e o mês para garantir dois dígitos
-        const diaFormatado = dia < 10 ? `0${dia}` : dia;
-        const mesFormatado = mes < 10 ? `0${mes}` : mes;
-
-        // Cria a string no formato "dia/mês"
-        const diaMes = `${diaFormatado}/${mesFormatado}`;
-
-message += `${diaMes}: ${count} Saída${count > 1 ? 's' : ''}\n`;
-}
-
-
-
-
-
-
-    
-
     // Adiciona totais
     message += `\n*Total de Saídas:* ${filteredExpenses.length} saída${filteredExpenses.length > 1 ? 's' : ''}\n`;
     message += `*Valor total:* R$ ${totalValue.toFixed(2)}\n`;
