@@ -230,10 +230,10 @@ const generateWhatsAppMessage = () => {
 
         // Formata o dia e o mês para garantir dois dígitos
       //  const diaFormatado = dia < 10 ? `0${dia}` : dia;
-        const mesFormatado = mes < 10 ? `0${mes}` : mes;
+     //   const mesFormatado = mes < 10 ? `0${mes}` : mes;
 
         // Cria a string no formato "dia/mês"
-        const diaMes = `${dia}/${mesFormatado}`;
+        const diaMes = `${dia}/${mes}`;
 
         // Adiciona ao message
         message += `${diaMes}: ${count} Saída${count > 1 ? 's' : ''}\n`;
