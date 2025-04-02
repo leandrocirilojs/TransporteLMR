@@ -294,7 +294,24 @@ document.getElementById('export-excel').addEventListener('click', exportToExcel)
     // Carregar todas as saídas ao iniciar
   
     
-    loadExpenses();
+   // loadExpenses();
+
+// Verifica se os elementos existem antes de manipular
+if(filterStartDate && filterEndDate) {
+    const today = new Date().toISOString().split('T')[0];
+    filterStartDate.value = today;
+    filterEndDate.value = today;
+    applyFilters();
+}
+
+
+
+
+
+
+
+
+    
 });
 
 
