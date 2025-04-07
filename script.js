@@ -91,7 +91,14 @@ document.addEventListener('DOMContentLoaded', () => {
         expenses.push(expense);
         localStorage.setItem('expenses', JSON.stringify(expenses));
 
-        loadExpenses();  // Carrega a lista após adicionar uma nova saída
+        //loadExpenses();  // Carrega a lista após adicionar uma nova saída
+        if(filterStartDate && filterEndDate) {
+    const today = new Date().toISOString().split('T')[0];
+    filterStartDate.value = today;
+    filterEndDate.value = today;
+    applyFilters();
+}
+
         // limpar todos os campos ^ expenseForm.reset();
     });
 
@@ -104,7 +111,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const expenses = JSON.parse(localStorage.getItem('expenses')) || [];
             expenses.splice(index, 1);  // Remove a saída da lista
             localStorage.setItem('expenses', JSON.stringify(expenses));  // Atualiza o LocalStorage
-            loadExpenses();  // Recarrega a lista após a remoção
+            //loadExpenses();
+            if(filterStartDate && filterEndDate) {
+    const today = new Date().toISOString().split('T')[0];
+    filterStartDate.value = today;
+    filterEndDate.value = today;
+    applyFilters();
+}
+
+            
+            // Recarrega a lista após a remoção
         } else {
             alert("Senha incorreta! A saída não foi removida.");
         }
