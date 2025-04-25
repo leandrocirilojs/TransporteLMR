@@ -403,7 +403,7 @@ h2 {
     gap: 10px;
     background-color: rgba(255, 255, 255, 0.9); /* Fundo semi-transparente */
     padding: 6px 14px;
-    border-radius: 50px;
+    border-radius: 10px 50px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para destacar */
     z-index: 998; /* Garante que os botões fiquem acima de outros elementos */
 }
