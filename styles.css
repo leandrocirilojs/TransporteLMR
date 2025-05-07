@@ -1,7 +1,7 @@
 /* Estilos Gerais */
 body {
     font-family: Arial, sans-serif;
-    background-color: #0919ed;
+    background: -webkit-linear-gradient(90deg, #0061fe,#000000);background: linear-gradient(90deg, #0061fe,#000000);
     margin: 0;
     padding: 0;
     color: #333;
