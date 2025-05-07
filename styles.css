@@ -1,7 +1,7 @@
 /* Estilos Gerais */
 body {
     font-family: Arial, sans-serif;
-    background-color: #b268f2;
+    background-color: #0919ed;
     margin: 0;
     padding: 0;
     color: #333;
@@ -47,7 +47,7 @@ input:focus, select:focus {
 
 /* Botão Adicionar Saída */
 button {
-    background-color: #28a745;
+    background-color: #2d3bfa;
     color: #fff;
     border: none;
     cursor: pointer;
@@ -56,7 +56,7 @@ button {
 }
 
 button:hover {
-    background-color: #218838;
+    background-color: #5608ff;
 }
 
 /* Lista de Saídas */
